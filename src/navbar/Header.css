@@ -1,0 +1,7 @@
+.admin-header {
+	background-color: var(--blank-background-color);
+	height: var(--header-height);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

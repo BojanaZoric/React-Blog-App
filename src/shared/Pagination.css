@@ -1,0 +1,9 @@
+.pagination-item {
+	display: inline-block;
+	border: 0.08rem solid var(--primary-color);
+	border-radius: 0.1rem;
+	padding: 0.2rem 0.5rem;
+	margin: 0 0.1rem;
+	color: var(--primary-color);
+	background-color: white;
+}

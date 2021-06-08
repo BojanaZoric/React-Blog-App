@@ -1,0 +1,34 @@
+.analitic-wrapper {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.analitic-container {
+	height: 20rem;
+}
+
+.card-1,
+.card-2 {
+	width: 100%;
+}
+
+.draggable {
+	padding: 1rem;
+	background-color: white;
+	border: 1px solid black;
+	cursor: move;
+}
+
+.draggable.dragging {
+	opacity: 0.5;
+}
+
+@media screen and (min-width: 470px) {
+	.card-1 {
+		width: 32%;
+	}
+	.card-2 {
+		width: 65%;
+	}
+}

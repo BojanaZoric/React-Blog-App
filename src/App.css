@@ -1,0 +1,160 @@
+:root {
+	--primary-color: #82409d; /*#7b01af; */
+	--primary-color-hover: #b573d0;
+	--danger-color: #d43f3a;
+	--table-header-color: #7c7c7c;
+	--background-color: #f2f2f2;
+	--primary-text-color: #ffffff;
+	--blank-background-color: #ffffff;
+	--header-height: 4rem;
+	--table-border-color: #f2f2f2;
+	--meta-data-color: #7c7c7c;
+}
+body {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	outline: none;
+	background-color: var(--background-color);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+	display: flex;
+	flex-direction: row-reverse;
+	min-height: 100vh;
+}
+
+.main {
+	width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+	.navbar {
+		width: 20%;
+		min-width: 10rem;
+		min-height: 100%;
+	}
+
+	.main {
+		width: 80%;
+	}
+}
+
+.content-container {
+	background-color: var(--blank-background-color);
+	width: 80%;
+	margin: 2.5rem auto;
+	padding: 0.2rem 0;
+	border-radius: 0.5rem;
+	min-height: 30rem;
+}
+
+/* Table */
+
+.table-container {
+	margin-top: 2rem;
+	width: 40%;
+	min-width: 10rem;
+	margin: 2rem auto;
+}
+.main-table,
+.main-table-header,
+.main-table-data {
+	border-bottom: 0.05rem solid var(--table-border-color);
+	border-radius: 0.2rem;
+}
+
+.main-table {
+	width: 100%;
+	background-color: var(--blank-background-color);
+	border-collapse: collapse;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.main-table-row {
+	/*border-bottom: 0.08rem solid black;*/
+}
+
+.main-table-header {
+	font-size: 1rem;
+	color: var(--table-header-color);
+	text-align: left;
+}
+
+.main-table-data,
+.main-table-header {
+	padding: 0.7rem 0.4rem;
+	font-size: 0.9rem;
+}
+
+.main-table-id {
+	width: 20%;
+}
+
+/* BUTTONS */
+
+.btn {
+	color: var(--primary-text-color);
+	border: none;
+	padding: 0.7rem 0.8rem;
+	border-radius: 0.3rem;
+	letter-spacing: 0.05rem;
+	font-size: 1rem;
+	cursor: pointer;
+}
+
+.primary-btn {
+	background-color: var(--primary-color);
+	color: var(--primary-text-color);
+	padding: 0.5rem 1rem;
+}
+
+.primary-btn:hover,
+.primary-btn:active {
+	background-color: var(--primary-color-hover);
+}
+
+.danger-btn {
+	background-color: var(--danger-color);
+	color: var(--primary-text-color);
+}
+
+.form-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 5rem;
+}
+
+.add-form {
+	display: grid;
+	grid-template-columns: [labels]10rem [controls]15rem;
+}
+
+.add-form-label {
+	grid-column: labels;
+}
+
+.add-form-control {
+	grid-column: controls;
+}
+
+.input-field-wrapper {
+	position: relative;
+}
+
+.input-field-wrapper button {
+	position: absolute;
+	right: 0;
+	top: 0.5rem;
+}
+
+.add-form-input {
+	margin: 0.1rem 0;
+	padding: 0.3rem 0.1rem;
+	font-size: 1rem;
+	width: 100%;
+}

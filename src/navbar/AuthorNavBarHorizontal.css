@@ -1,0 +1,25 @@
+.author-blog-list-wrapper {
+	position: relative;
+}
+
+.horizontal-nav-list {
+	position: fixed; /* Set the navbar to fixed position */
+	top: 0; /* Position the navbar at the top of the page */
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	list-style-type: none;
+	background-color: #000000;
+	justify-content: center;
+	margin: 0;
+	padding: 0.8rem 0;
+}
+
+.horizontal-nav-element {
+	padding: 0 1rem;
+}
+
+.horizontal-nav-link {
+	text-decoration: none;
+	color: #ffffff;
+}

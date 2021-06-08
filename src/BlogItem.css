@@ -1,0 +1,44 @@
+.blog-item-container {
+	width: 90%;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	margin: 1rem auto;
+}
+
+.post-img-section {
+	height: 15rem;
+}
+
+.post-info-section {
+	padding: 0 0.2rem;
+}
+
+.post-title {
+	margin: 0;
+	padding-top: 0.5rem;
+}
+
+.meta {
+	color: var(--meta-data-color);
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.post-description {
+	margin: 0.5rem 0;
+	height: 9rem;
+}
+
+@media screen and (min-width: 767px) {
+	.blog-item-container {
+		flex-direction: row;
+	}
+	.post-img-section {
+		min-width: 15rem;
+	}
+
+	.post-info-section {
+		flex-grow: 1;
+	}
+}

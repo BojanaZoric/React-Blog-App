@@ -1,0 +1,49 @@
+.post-wrapper {
+	display: flex;
+	flex-direction: column;
+	width: 90%;
+	margin: 0 auto;
+}
+
+.post-data {
+	display: flex;
+	flex-direction: column;
+}
+
+.post-data,
+.post-settings {
+	width: 100%;
+}
+
+.blog-content {
+	width: 80%;
+	max-width: 50rem;
+	margin: 0 auto;
+	height: 40rem;
+	resize: none;
+	overflow-y: scroll;
+	font-family: Arial, Helvetica, sans-serif;
+	letter-spacing: 0.05rem;
+	line-height: 1.2rem;
+	padding: 1rem;
+}
+
+.blog-content-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+@media only screen and (min-width: 768px) {
+	.post-wrapper {
+		flex-direction: row;
+	}
+
+	.post-data {
+		width: 66%;
+	}
+
+	.post-settings {
+		width: 33%;
+	}
+}
