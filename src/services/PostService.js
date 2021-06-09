@@ -9,6 +9,15 @@ const getAll = (limit, offset) => {
 	});
 };
 
+const getPostsWithCategory = (categoryId, limit, offset) => {
+	return axios.get(`http://localhost:3000/categoryPost/${categoryId}`, {
+		params: {
+			limit: limit,
+			offset: offset,
+		},
+	});
+};
+
 const getOne = (id) => {
 	return axios.get("http://localhost:3000/post/" + id);
 };
@@ -37,6 +46,7 @@ const update = (id, data) => {
 
 const BlogService = {
 	getAll,
+	getPostsWithCategory,
 	create,
 	getOne,
 	update,

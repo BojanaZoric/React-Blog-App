@@ -17,3 +17,8 @@
 	margin: 0 0.5rem;
 	padding: 0 0.2rem;
 }
+
+.user-nav-link {
+	text-decoration: none;
+	color: #000000;
+}

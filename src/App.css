@@ -22,7 +22,7 @@ body {
 
 .container {
 	display: flex;
-	flex-direction: row-reverse;
+	flex-direction: column-reverse;
 	min-height: 100vh;
 }
 
@@ -30,7 +30,15 @@ body {
 	width: 100%;
 }
 
+.aside {
+	width: 100%;
+}
+
 @media screen and (min-width: 768px) {
+	.container {
+		flex-direction: row-reverse;
+	}
+
 	.navbar {
 		width: 20%;
 		min-width: 10rem;
@@ -39,6 +47,10 @@ body {
 
 	.main {
 		width: 80%;
+	}
+
+	.aside {
+		width: 20%;
 	}
 }
 
@@ -75,6 +87,12 @@ body {
 
 .main-table-row {
 	/*border-bottom: 0.08rem solid black;*/
+}
+
+.main-table-empty-row {
+	background-color: #eeeeee;
+	cursor: no-drop;
+	height: 3rem;
 }
 
 .main-table-header {

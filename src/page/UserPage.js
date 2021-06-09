@@ -1,10 +1,9 @@
 import React from "react";
-import { Route, Router, Switch, useRouteMatch } from "react-router";
+import { Route, Switch, useRouteMatch } from "react-router";
 import BlogList from "../BlogList";
 import Sidebar from "../Sidebar";
 import Single from "../Single";
 import UserHeader from "../UserPage/UserHeader";
-import history from "../util/history";
 
 export default function UserPage() {
 	let match = useRouteMatch();
@@ -16,19 +15,20 @@ export default function UserPage() {
 					<Sidebar />
 				</aside>
 				<main role="main" className="main">
-					<Router history={history}>
-						<Switch>
-							<Route path="/blog" exact>
-								<BlogList />
-							</Route>
-							<Route path="/" exact>
-								<BlogList />
-							</Route>
-							<Route path={`${match.path}/post/:id"`}>
-								<Single />
-							</Route>
-						</Switch>
-					</Router>
+					<Switch>
+						<Route path={`${match.path}blog`} exact>
+							<BlogList />
+						</Route>
+						<Route path={`${match.path}`} exact>
+							<BlogList />
+						</Route>
+						<Route path={`${match.path}post/:id"`}>
+							<Single />
+						</Route>
+						<Route path={`${match.path}category/:category`}>
+							<BlogList category={1} />
+						</Route>
+					</Switch>
 				</main>
 			</div>
 		</>

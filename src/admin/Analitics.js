@@ -61,21 +61,18 @@ export default class Analitics extends React.Component {
 					className="draggable analitic-card card-2"
 					draggable="true"
 				>
-					1
-				</div>
-
-				<div
-					className="draggable analitic-card card-1"
-					draggable="true"
-				>
-					3
+					Post Views
 				</div>
 				<div
 					className="draggable analitic-card card-1"
 					draggable="true"
 				>
-					4
+					New Users
 				</div>
+				<div
+					className="draggable analitic-card card-1"
+					draggable="true"
+				></div>
 			</div>
 		);
 	}

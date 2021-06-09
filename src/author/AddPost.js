@@ -93,7 +93,7 @@ export default class AddPost extends React.Component {
 						</button>
 					</div>
 					<button
-						className="primary-btn add-form-control"
+						className="btn primary-btn add-form-control"
 						onClick={this.handleSubmit}
 						type="submit"
 					>

@@ -19,13 +19,12 @@ function App() {
 					<Route path="/author">
 						<AuthorPage />
 					</Route>
-					<Route path="/" exact>
+					<Route path="/">
 						<UserPage />
 					</Route>
 					<Route path="/authorblog" exact>
 						<AuthorBlogList />
 					</Route>
-					<Route path="/post/:postId" exact component={Single} />
 				</Switch>
 			</div>
 		</Router>

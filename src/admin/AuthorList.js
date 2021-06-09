@@ -74,6 +74,23 @@ export default class AuthorList extends React.Component {
 								</td>
 							</tr>
 						))}
+						{[
+							...Array(
+								this.state.itemsPerPage -
+									this.state.authors.length
+							),
+						].map((_, i) => (
+							<tr
+								key={i}
+								className="main-table-row main-table-empty-row"
+							>
+								<td className="main-table-data main-table-id">
+									#
+								</td>
+								<td className="main-table-data"> </td>
+								<td className="main-table-data"></td>
+							</tr>
+						))}
 					</tbody>
 				</table>
 				<Pagination
@@ -82,6 +99,7 @@ export default class AuthorList extends React.Component {
 					currentPage={this.state.currentPage}
 					onChangeItemsPerPage={this.changeItemsPerPage}
 					onChangePage={this.changePage}
+					defaultValue={this.itemsPerPage}
 				></Pagination>
 			</div>
 		);

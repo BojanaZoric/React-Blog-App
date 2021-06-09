@@ -138,15 +138,20 @@ export default class CreatePost extends React.Component {
 									value={this.state.content}
 								></textarea>
 							</div>
-							<button type="submit">Save</button>
+							<button className="btn primary-btn" type="submit">
+								Save
+							</button>
 						</form>
 					</div>
 					<div className="post-settings">
-						<div className="post-category">
+						<div>
 							Category
-							<ul>
+							<ul className="post-categories">
 								{this.state.categories.map((item) => (
-									<li key={item[0].id}>
+									<li
+										className="post-category-item"
+										key={item[0].id}
+									>
 										<span>{item[0].name}</span>
 										<span>
 											<button

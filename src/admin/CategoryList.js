@@ -9,7 +9,7 @@ export default class CategoryList extends React.Component {
 		this.state = {
 			categories: [],
 			totalRecords: "",
-			itemsPerPage: 2,
+			itemsPerPage: 5,
 			currentPage: 1,
 		};
 
@@ -108,6 +108,24 @@ export default class CategoryList extends React.Component {
 									</td>
 								</tr>
 							))}
+							{[
+								...Array(
+									this.state.itemsPerPage -
+										this.state.categories.length
+								),
+							].map((_, i) => (
+								<tr
+									key={i}
+									className="main-table-row main-table-empty-row"
+								>
+									<td className="main-table-data main-table-id">
+										#
+									</td>
+									<td className="main-table-data"> </td>
+									<td className="main-table-data"></td>
+									<td className="main-table-data"></td>
+								</tr>
+							))}
 						</tbody>
 					</table>
 					<Pagination
@@ -116,6 +134,7 @@ export default class CategoryList extends React.Component {
 						currentPage={this.state.currentPage}
 						onChangeItemsPerPage={this.changeItemsPerPage}
 						onChangePage={this.changePage}
+						defaultValue={this.itemsPerPage}
 					></Pagination>
 				</div>
 			</div>

@@ -8,6 +8,7 @@ export default class Pagination extends React.Component {
 			totalRecords: props.totalRecords,
 			itemsPerPage: props.itemsPerPage,
 			currentPage: props.currentPage,
+			defaultValue: props.defaultValue,
 		};
 		this.changeNumber = props.onChangePage;
 		this.changeItemsPerPage = props.onChangeItemsPerPage;
@@ -49,9 +50,11 @@ export default class Pagination extends React.Component {
 					<select
 						value={this.state.itemsPerPage}
 						onChange={this.handleChange}
+						defaultValue={this.state.defaultValue}
 					>
-						<option value={4}>4</option>
 						<option value={5}>5</option>
+						<option value={10}>10</option>
+						<option value={15}>15</option>
 						<option value={this.state.totalRecords}>All</option>
 					</select>
 				</div>

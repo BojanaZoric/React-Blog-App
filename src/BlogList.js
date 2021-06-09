@@ -5,8 +5,10 @@ import PostService from "./services/PostService";
 
 export default class BlogList extends React.Component {
 	constructor(props) {
-		super();
+		super(props);
 		this.state = {
+			category: props.category,
+			tag: props.tag,
 			blogItems: [],
 			totalRecords: "",
 			itemsPerPage: 5,
@@ -32,14 +34,27 @@ export default class BlogList extends React.Component {
 	}
 
 	getPosts() {
-		PostService.getAll(
-			this.state.itemsPerPage,
-			this.state.itemsPerPage * (this.state.currentPage - 1)
-		).then((res) => {
-			const blogItems = res.data[0];
-			this.setState({ totalRecords: res.data[1] });
-			this.setState({ blogItems });
-		});
+		if (!this.state.category && !this.state.tag) {
+			PostService.getAll(
+				this.state.itemsPerPage,
+				this.state.itemsPerPage * (this.state.currentPage - 1)
+			).then((res) => {
+				const blogItems = res.data[0];
+				this.setState({ totalRecords: res.data[1] });
+				this.setState({ blogItems });
+			});
+		} else if (this.state.category) {
+			PostService.getPostsWithCategory(
+				this.state.category,
+				this.state.itemsPerPage,
+				this.state.itemsPerPage * (this.state.currentPage - 1)
+			).then((res) => {
+				this.setState({
+					totalRecords: res.data[2],
+					blogItems: res.data[1],
+				});
+			});
+		}
 	}
 
 	changePage(pageNum) {
@@ -62,6 +77,7 @@ export default class BlogList extends React.Component {
 					currentPage={this.state.currentPage}
 					onChangeItemsPerPage={this.changeItemsPerPage}
 					onChangePage={this.changePage}
+					defaultValue={this.itemsPerPage}
 				></Pagination>
 			</div>
 		);
