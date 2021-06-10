@@ -127,8 +127,13 @@ export default class CreatePost extends React.Component {
 				<div className="post-wrapper">
 					<div className="post-data">
 						<form onSubmit={this.handleSubmit}>
-							<h1>{this.state.title}</h1>
-							<h6>{this.state.slug}</h6>
+							<h1 className="post-data-title">
+								{this.state.title}
+								<input />
+							</h1>
+							<h6 className="post-data-title">
+								{this.state.slug}
+							</h6>
 							<div className="blog-content-container">
 								<textarea
 									name="content"
@@ -144,24 +149,27 @@ export default class CreatePost extends React.Component {
 						</form>
 					</div>
 					<div className="post-settings">
-						<div>
-							Category
+						<div className="post-labels">
+							<div className="settings-title">Categories</div>
 							<ul className="post-categories">
 								{this.state.categories.map((item) => (
 									<li
 										className="post-category-item"
 										key={item[0].id}
 									>
-										<span>{item[0].name}</span>
+										<span className="post-category-label">
+											{item[0].name}
+										</span>
 										<span>
 											<button
+												className="post-category-btn"
 												onClick={() =>
 													this.removeCategoryFromPost(
 														item[1].id
 													)
 												}
 											>
-												x
+												&#10006;
 											</button>
 										</span>
 									</li>
@@ -188,21 +196,27 @@ export default class CreatePost extends React.Component {
 								<button type="submit">Add</button>
 							</form>
 						</div>
-						<div className="post-tag">
-							Tag
-							<ul>
+						<div className="post-labels">
+							<div className="settings-title">Tags</div>
+							<ul className="post-categories">
 								{this.state.tags.map((item) => (
-									<li key={item[0].id}>
-										<span>{item[0].name}</span>
+									<li
+										className="post-category-item"
+										key={item[0].id}
+									>
+										<span className="post-category-label">
+											{item[0].name}
+										</span>
 										<span>
 											<button
+												className="post-category-btn"
 												onClick={() =>
 													this.removeTagFromPost(
 														item[1].id
 													)
 												}
 											>
-												x
+												&#10006;
 											</button>
 										</span>
 									</li>
