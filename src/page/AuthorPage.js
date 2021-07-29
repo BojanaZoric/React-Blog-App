@@ -5,6 +5,9 @@ import Header from "../navbar/Header";
 import { Route, Switch, useRouteMatch } from "react-router";
 import AddPost from "../author/AddPost";
 import CreatePost from "../author/CreatePost";
+import { Router } from "react-router-dom";
+import Profile from "../author/Profile";
+import MyPosts from "../author/MyPosts";
 
 export default function AuthorPage() {
 	let match = useRouteMatch();
@@ -24,6 +27,12 @@ export default function AuthorPage() {
 					</Route>
 					<Route path={`/author/create-post`}>
 						<CreatePost />
+					</Route>
+					<Route path={`/author/profile`}>
+						<Profile />
+					</Route>
+					<Route path={`/author/myPosts`}>
+						<MyPosts />
 					</Route>
 				</Switch>
 			</main>

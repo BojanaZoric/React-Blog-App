@@ -7,12 +7,20 @@ import history from "./util/history";
 import UserPage from "./page/UserPage";
 import Single from "./Single";
 import AuthorBlogList from "./author/AuthorBlogList";
+import Login from "./Login";
+import Registration from "./page/Registration";
 
 function App() {
 	return (
 		<Router history={history}>
 			<div>
 				<Switch>
+					<Route path="/login">
+						<Login></Login>
+					</Route>
+					<Route path="/registration">
+						<Registration />
+					</Route>
 					<Route path="/admin">
 						<AdminPage />
 					</Route>
@@ -25,6 +33,7 @@ function App() {
 					<Route path="/authorblog" exact>
 						<AuthorBlogList />
 					</Route>
+					
 				</Switch>
 			</div>
 		</Router>

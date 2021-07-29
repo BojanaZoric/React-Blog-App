@@ -24,10 +24,11 @@ const getOne = (id) => {
 
 const create = (data) => {
 	let post = {
-		authorId: 1,
 		title: data.title,
 		slug: data.slug,
 		content: "",
+		image: "",
+		published: false,
 	};
 	return axios.post("http://localhost:3000/posts", post);
 };

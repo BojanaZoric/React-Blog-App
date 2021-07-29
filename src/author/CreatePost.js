@@ -70,7 +70,8 @@ export default class CreatePost extends React.Component {
 	}
 
 	getPost() {
-		PostService.getOne(18).then((res) => {
+		PostService.getOne(1).then((res) => {
+			console.log(res);
 			this.setState({
 				title: res.data[0].title,
 				slug: res.data[0].slug,
