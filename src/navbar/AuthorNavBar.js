@@ -57,6 +57,28 @@ export default class AuthorNavBar extends React.Component {
 									Add Post
 								</NavLink>
 							</li>
+							<li className="nav-element">
+								<NavLink
+									className="nav-link"
+									activeClassName="is-active"
+									to="/author/myPosts"
+									exact
+									onClick={this.closeMenu}
+								>
+									My Posts
+								</NavLink>
+							</li>
+							<li className="nav-element">
+								<NavLink
+									className="nav-link"
+									activeClassName="is-active"
+									to="/author/savedPosts"
+									exact
+									onClick={this.closeMenu}
+								>
+									Saved Posts
+								</NavLink>
+							</li>
 						</ul>
 					</div>
 				</div>

@@ -2,7 +2,20 @@
 	background-color: white;
 }
 
+.branding {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 10rem;
+}
+
+.logo-image {
+	object-fit: cover;
+	height: 100%;
+}
+
 .user-nav {
+	position: relative;
 	list-style-type: none;
 	display: flex;
 	flex-direction: row;
@@ -21,4 +34,10 @@
 .user-nav-link {
 	text-decoration: none;
 	color: #000000;
+}
+
+.loginBtn {
+	position: absolute;
+	right: 1rem;
+	top: 0.5rem;
 }

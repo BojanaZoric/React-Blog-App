@@ -44,8 +44,8 @@ export default class Pagination extends React.Component {
 			this.state.totalRecords / this.state.itemsPerPage
 		);
 		return (
-			<div>
-				<div>
+			<div className="pagination-container">
+				<div className="items-per-page meta">
 					items per page
 					<select
 						value={this.state.itemsPerPage}

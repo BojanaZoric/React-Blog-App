@@ -8,11 +8,12 @@ import CreatePost from "../author/CreatePost";
 import { Router } from "react-router-dom";
 import Profile from "../author/Profile";
 import MyPosts from "../author/MyPosts";
+import SavedPosts from "../author/SavedPosts";
 
 export default function AuthorPage() {
 	let match = useRouteMatch();
 	return (
-		<div className="container">
+		<div className="container admin-container">
 			<main role="main" className="main">
 				<Header></Header>
 				<Switch>
@@ -25,7 +26,7 @@ export default function AuthorPage() {
 					<Route path={`/author/add-post`}>
 						<AddPost />
 					</Route>
-					<Route path={`/author/create-post`}>
+					<Route path={`/author/create-post/:id`}>
 						<CreatePost />
 					</Route>
 					<Route path={`/author/profile`}>
@@ -33,6 +34,9 @@ export default function AuthorPage() {
 					</Route>
 					<Route path={`/author/myPosts`}>
 						<MyPosts />
+					</Route>
+					<Route path={`/author/savedPosts`}>
+						<SavedPosts />
 					</Route>
 				</Switch>
 			</main>

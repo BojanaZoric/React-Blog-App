@@ -55,11 +55,11 @@ export default class AddPost extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className="form-container">
 				{this.state.redirect ? (
 					<Redirect
 						push
-						to={"/author/create-post/" + this.state.givenId}
+						to={`/author/create-post/${this.state.givenId}`}
 					/>
 				) : null}
 				<h3>Create a new Post:</h3>
@@ -74,6 +74,7 @@ export default class AddPost extends React.Component {
 						id="title"
 						onChange={this.handleChange}
 						value={this.state.title}
+						required
 					/>
 					<label className="add-form-label" htmlFor="slug">
 						Slug:

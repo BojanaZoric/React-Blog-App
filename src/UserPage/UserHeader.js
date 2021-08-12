@@ -2,8 +2,9 @@ import React from "react";
 import "./UserHeader.css";
 import "../services/CategoryService";
 import CategoryService from "../services/CategoryService";
-import { NavLink, Router } from "react-router-dom";
+import { Link, NavLink, Router } from "react-router-dom";
 import history from "../util/history";
+import logo from "../util/logo.png";
 
 export default class UserHeader extends React.Component {
 	constructor() {
@@ -11,6 +12,8 @@ export default class UserHeader extends React.Component {
 		this.state = {
 			categories: [],
 		};
+		this.loginClicked = this.loginClicked.bind(this);
+		this.logoutClicked = this.logoutClicked.bind(this);
 	}
 	componentDidMount() {
 		this.getMenu();
@@ -21,10 +24,54 @@ export default class UserHeader extends React.Component {
 		});
 	}
 
+	isLoggedIn() {
+		const token = localStorage.getItem("token");
+
+		if (token) {
+			return true;
+		}
+		return false;
+	}
+
+	LoginButton() {
+		return (
+			<Link to="/login">
+				<button
+					onClick={this.loginClicked}
+					className="btn primary-btn loginBtn"
+				>
+					Log In
+				</button>
+			</Link>
+		);
+	}
+
+	LogoutButton() {
+		return (
+			<Link to="/login">
+				<button
+					onClick={this.logoutClicked}
+					className="btn primary-btn loginBtn"
+				>
+					Log Out
+				</button>
+			</Link>
+		);
+	}
+
+	loginClicked() {}
+
+	logoutClicked() {
+		localStorage.removeItem("token");
+		localStorage.removeItem("user");
+	}
+
 	render() {
 		return (
 			<header className="user-header">
-				<div className="branding">Header</div>
+				<div className="branding">
+					<img className="logo-image" src={logo} />
+				</div>
 
 				<nav>
 					<ul className="user-nav">
@@ -42,6 +89,9 @@ export default class UserHeader extends React.Component {
 								</li>
 							))}
 						</Router>
+						{this.isLoggedIn()
+							? this.LogoutButton()
+							: this.LoginButton()}
 					</ul>
 				</nav>
 			</header>

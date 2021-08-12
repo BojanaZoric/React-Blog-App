@@ -1,5 +1,6 @@
 import React from "react";
 import "./Analitics.css";
+import { Bar, Chart } from "react-chartjs-2";
 
 export default class Analitics extends React.Component {
 	constructor() {
@@ -54,13 +55,40 @@ export default class Analitics extends React.Component {
 		}
 	}
 
+	getUsersAnalitycData() {
+		const labels = ["1", "2", "3"];
+		return {
+			labels: ["1", "2", "3"],
+			datasets: [
+				{
+					label: "New Users",
+					backgroundColor: "red",
+					data: [0, 10, 5],
+				},
+			],
+		};
+	}
+
 	render() {
+		const labels = ["January", "February", "March", "April", "May", "June"];
+		const data = {
+			labels: labels,
+			datasets: [
+				{
+					label: "My First dataset",
+					backgroundColor: "rgb(255, 99, 132)",
+					borderColor: "rgb(255, 99, 132)",
+					data: [0, 10, 5, 2, 20, 30, 45],
+				},
+			],
+		};
 		return (
 			<div className="analitic-wrapper">
 				<div
 					className="draggable analitic-card card-2"
 					draggable="true"
 				>
+					<Bar data={data} />
 					Post Views
 				</div>
 				<div
@@ -68,6 +96,7 @@ export default class Analitics extends React.Component {
 					draggable="true"
 				>
 					New Users
+					<Bar data={this.getUsersAnalitycData()} />
 				</div>
 				<div
 					className="draggable analitic-card card-1"

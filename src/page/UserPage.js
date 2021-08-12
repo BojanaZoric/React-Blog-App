@@ -22,11 +22,11 @@ export default function UserPage() {
 						<Route path={`${match.path}`} exact>
 							<BlogList />
 						</Route>
-						<Route path={`${match.path}post/:id"`}>
+						<Route path={`${match.path}post/:id`}>
 							<Single />
 						</Route>
 						<Route path={`${match.path}category/:category`}>
-							<BlogList category={1} />
+							<BlogList />
 						</Route>
 					</Switch>
 				</main>

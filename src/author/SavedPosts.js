@@ -1,9 +1,9 @@
 import React from "react";
 import BlogArchive from "../BlogArchive";
-import UserService from "../services/UserService";
+import AuthorService from "../services/AuthorService";
 import Pagination from "../shared/Pagination";
 
-export default class MyPosts extends React.Component {
+export default class SavedPosts extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -12,14 +12,13 @@ export default class MyPosts extends React.Component {
 			itemsPerPage: 5,
 			currentPage: 1,
 		};
-
-		this.getPosts = this.getPosts.bind(this);
+		this.getSavedPosts = this.getSavedPosts.bind(this);
 		this.changePage = this.changePage.bind(this);
 		this.changeItemsPerPage = this.changeItemsPerPage.bind(this);
 	}
 
 	componentDidMount() {
-		this.getPosts();
+		this.getSavedPosts();
 	}
 
 	componentDidUpdate(prevProps, prevState) {
@@ -27,7 +26,7 @@ export default class MyPosts extends React.Component {
 			this.state.itemsPerPage !== prevState.itemsPerPage ||
 			this.state.currentPage !== prevState.currentPage
 		) {
-			this.getPosts();
+			this.getSavedPosts();
 		}
 	}
 
@@ -39,8 +38,8 @@ export default class MyPosts extends React.Component {
 		this.setState({ itemsPerPage: itemsNum });
 	}
 
-	getPosts() {
-		UserService.myPosts(
+	getSavedPosts() {
+		AuthorService.savedPosts(
 			this.state.itemsPerPage,
 			this.state.itemsPerPage * (this.state.currentPage - 1)
 		).then((res) => {

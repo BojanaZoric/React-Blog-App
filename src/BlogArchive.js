@@ -13,6 +13,7 @@ export default class BlogArchive extends React.Component {
 		this.state.blogItems = this.props.postItems;
 		return (
 			<div>
+				<div className="divider"></div>
 				{this.state.blogItems.map((item) => (
 					<BlogItem key={item.id} blogItem={item}></BlogItem>
 				))}

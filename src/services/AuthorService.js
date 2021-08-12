@@ -9,8 +9,23 @@ const getAll = (limit, offset) => {
 	});
 };
 
+const savePost = (id) => {
+	return axios.post(`http://localhost:3000/savePost/${id}`, {});
+};
+
+const savedPosts = (limit, offset) => {
+	return axios.get(`http://localhost:3000/savedPosts`, {
+		params: {
+			limit: limit,
+			offset: offset,
+		},
+	});
+};
+
 const AuthorService = {
 	getAll,
+	savePost,
+	savedPosts,
 };
 
 export default AuthorService;

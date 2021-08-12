@@ -5,7 +5,7 @@ import AdminNavBar from "../navbar/AdminNavBar";
 export default class AdminPage extends React.Component {
 	render() {
 		return (
-			<div className="container">
+			<div className="container admin-container">
 				<main role="main" className="main">
 					<Main></Main>
 				</main>

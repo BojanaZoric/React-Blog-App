@@ -2,23 +2,35 @@ import React from "react";
 import BlogArchive from "./BlogArchive";
 import Pagination from "./shared/Pagination";
 import PostService from "./services/PostService";
+import { withRouter } from "react-router-dom";
 
-export default class BlogList extends React.Component {
+class BlogList extends React.Component {
 	constructor(props) {
 		super(props);
+		this.match = this.props.match;
+		console.log(this.match.params.category);
 		this.state = {
-			category: props.category,
-			tag: props.tag,
+			category: props.match.params.category,
+			tag: props.match.params.tag,
 			blogItems: [],
 			totalRecords: "",
 			itemsPerPage: 5,
 			currentPage: 1,
 		};
-
 		this.getPosts = this.getPosts.bind(this);
 		this.changePage = this.changePage.bind(this);
 		this.changeItemsPerPage = this.changeItemsPerPage.bind(this);
 	}
+
+	componentWillReceiveProps = (nextProps) => {
+		if (
+			this.props.match.params.category !== nextProps.match.params.category
+		) {
+			this.setState({ category: nextProps.match.params.category });
+		} else if (this.props.match.params.tag !== nextProps.match.params.tag) {
+			this.setState({ tag: nextProps.match.params.tag });
+		}
+	};
 
 	componentDidMount() {
 		this.getPosts();
@@ -27,7 +39,9 @@ export default class BlogList extends React.Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (
 			this.state.itemsPerPage !== prevState.itemsPerPage ||
-			this.state.currentPage !== prevState.currentPage
+			this.state.currentPage !== prevState.currentPage ||
+			this.state.category !== prevState.category ||
+			this.state.tag !== prevState.tag
 		) {
 			this.getPosts();
 		}
@@ -83,3 +97,5 @@ export default class BlogList extends React.Component {
 		);
 	}
 }
+
+export default withRouter(BlogList);

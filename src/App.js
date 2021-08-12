@@ -5,7 +5,6 @@ import AdminPage from "./page/AdminPage";
 import AuthorPage from "./page/AuthorPage";
 import history from "./util/history";
 import UserPage from "./page/UserPage";
-import Single from "./Single";
 import AuthorBlogList from "./author/AuthorBlogList";
 import Login from "./Login";
 import Registration from "./page/Registration";
@@ -33,7 +32,6 @@ function App() {
 					<Route path="/authorblog" exact>
 						<AuthorBlogList />
 					</Route>
-					
 				</Switch>
 			</div>
 		</Router>

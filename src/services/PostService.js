@@ -35,14 +35,18 @@ const create = (data) => {
 
 const update = (id, data) => {
 	let post = {
-		authorId: 1,
 		title: data.title,
 		slug: data.slug,
 		content: data.content,
-		image: data.image,
+		image: "", //data.image,
 		published: data.published,
 	};
 	return axios.put(`http://localhost:3000/post/${id}`, post);
+};
+
+const sendComment = (data) => {
+	console.log(data);
+	return axios.post(`http://localhost:3000/comments`, data);
 };
 
 const BlogService = {
@@ -51,6 +55,7 @@ const BlogService = {
 	create,
 	getOne,
 	update,
+	sendComment,
 };
 
 export default BlogService;

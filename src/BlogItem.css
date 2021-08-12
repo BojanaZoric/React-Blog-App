@@ -3,27 +3,26 @@
 	background-color: white;
 	display: flex;
 	flex-direction: column;
-	margin: 1rem auto;
+	margin: 2rem auto;
 }
 
 .post-img-section {
 	height: 15rem;
-	background-color: pink;
+}
+
+.post-image {
+	width: 100%;
+	max-height: 15rem;
+	object-fit: cover;
 }
 
 .post-info-section {
-	padding: 0 0.2rem;
+	padding: 0 1rem;
 }
 
 .post-title {
 	margin: 0;
 	padding-top: 0.5rem;
-}
-
-.meta {
-	color: var(--meta-data-color);
-	font-size: 0.75rem;
-	font-weight: 700;
 }
 
 .post-description {
@@ -37,6 +36,11 @@
 	}
 	.post-img-section {
 		min-width: 15rem;
+		width: 40%;
+	}
+	.post-image {
+		object-fit: cover;
+		height: 100%;
 	}
 
 	.post-info-section {

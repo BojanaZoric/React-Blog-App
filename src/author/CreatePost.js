@@ -3,23 +3,26 @@ import "./CreatePost.css";
 import CategoryService from "../services/CategoryService";
 import PostService from "../services/PostService";
 import TagService from "../services/TagService";
+import { Redirect, withRouter } from "react-router-dom";
 
-export default class CreatePost extends React.Component {
+class CreatePost extends React.Component {
 	constructor(props) {
 		super(props);
+		console.log(this.props.match.params.id);
 		this.state = {
 			title: "",
 			slug: "",
 			content: "",
-			authorId: 1,
-			id: 0,
-			image: null,
+			published: false,
+			image: "",
+			id: this.props.match.params.id,
 			categories: [],
 			tags: [],
 			allCategories: [],
 			allTags: [],
 			selectedCategory: "",
 			selectedTag: "",
+			redirect: false,
 		};
 		this.addCategory = this.addCategory.bind(this);
 		this.addTag = this.addTag.bind(this);
@@ -33,7 +36,6 @@ export default class CreatePost extends React.Component {
 		const target = event.target;
 		const value = target.value;
 		const name = target.name;
-		console.log(name, value);
 		this.setState({
 			[name]: value,
 		});
@@ -41,7 +43,7 @@ export default class CreatePost extends React.Component {
 
 	isPresent(item) {
 		for (let el of this.state.categories) {
-			if (item.id === el[0].id) {
+			if (item.id === el.id) {
 				return true;
 			}
 		}
@@ -50,7 +52,7 @@ export default class CreatePost extends React.Component {
 
 	isPresentTag(item) {
 		for (let el of this.state.tags) {
-			if (item.id === el[0].id) {
+			if (item.id === el.id) {
 				return true;
 			}
 		}
@@ -70,8 +72,7 @@ export default class CreatePost extends React.Component {
 	}
 
 	getPost() {
-		PostService.getOne(1).then((res) => {
-			console.log(res);
+		PostService.getOne(this.state.id).then((res) => {
 			this.setState({
 				title: res.data[0].title,
 				slug: res.data[0].slug,
@@ -84,8 +85,8 @@ export default class CreatePost extends React.Component {
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		PostService.update(18, this.state).then((res) => {
-			console.log(res.data);
+		PostService.update(1, this.state).then((res) => {
+			this.setState({ redirect: true });
 		});
 	};
 
@@ -125,6 +126,9 @@ export default class CreatePost extends React.Component {
 	render() {
 		return (
 			<div>
+				{this.state.redirect ? (
+					<Redirect push to={"/author/myPosts"} />
+				) : null}
 				<div className="post-wrapper">
 					<div className="post-data">
 						<form onSubmit={this.handleSubmit}>
@@ -156,10 +160,10 @@ export default class CreatePost extends React.Component {
 								{this.state.categories.map((item) => (
 									<li
 										className="post-category-item"
-										key={item[0].id}
+										key={item.id}
 									>
 										<span className="post-category-label">
-											{item[0].name}
+											{item.name}
 										</span>
 										<span>
 											<button
@@ -252,3 +256,5 @@ export default class CreatePost extends React.Component {
 		);
 	}
 }
+
+export default withRouter(CreatePost);

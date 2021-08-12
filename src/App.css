@@ -16,14 +16,41 @@ body {
 	padding: 0;
 	min-height: 100vh;
 	outline: none;
-	background-color: var(--background-color);
+
 	font-family: Arial, Helvetica, sans-serif;
+}
+
+img {
+	max-width: 100%;
+	display: block;
+}
+
+.meta {
+	color: var(--meta-data-color);
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.divider {
+	height: 0.5rem;
+	background: repeating-linear-gradient(
+		-45deg,
+		#fff 0px,
+		#fff 4px,
+		var(--meta-data-color) 4px,
+		var(--meta-data-color) 5px
+	);
+	margin: 1rem;
 }
 
 .container {
 	display: flex;
 	flex-direction: column-reverse;
 	min-height: 100vh;
+}
+
+.admin-container {
+	background-color: var(--background-color);
 }
 
 .main {
@@ -47,10 +74,12 @@ body {
 
 	.main {
 		width: 80%;
+		padding: 0 2rem;
 	}
 
 	.aside {
 		width: 20%;
+		padding: 0 0.5rem;
 	}
 }
 

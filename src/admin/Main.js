@@ -12,7 +12,6 @@ export default function Main() {
 	let match = useRouteMatch();
 	return (
 		<div>
-			<Header></Header>
 			<Switch>
 				<Route path={`${match.path}`} exact>
 					<Analitics />

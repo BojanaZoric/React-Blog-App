@@ -1,0 +1,53 @@
+.single-post-container {
+	background-color: #ffffff;
+	margin: 0 2rem;
+}
+
+.single-post-category {
+	color: #0000ff;
+}
+
+.single-post-title {
+	margin: 0;
+	padding-bottom: 1rem;
+	border-bottom: 0.05rem solid lightgray;
+}
+
+.single-post-author {
+}
+
+.single-post-date {
+	padding-bottom: 1rem;
+	border-bottom: 0.05rem solid lightgray;
+}
+
+.comments-list {
+	list-style-type: none;
+}
+
+.single-comment-header {
+	border-bottom: 0.02rem solid lightgray;
+}
+
+.single-comment-container {
+	padding: 1rem;
+	margin: 0.2rem 1rem 0.2rem 0;
+	border: 0.05rem solid lightgray;
+	border-radius: 0.05rem;
+}
+
+.single-comment-message {
+	margin-top: 0.5rem;
+}
+
+.comment-form-message {
+	width: 80%;
+	margin: 0 auto;
+	display: block;
+	height: 5rem;
+	resize: none;
+}
+
+.indent-comment {
+	margin-left: 2rem;
+}
