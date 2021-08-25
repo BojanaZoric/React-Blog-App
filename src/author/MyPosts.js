@@ -1,5 +1,5 @@
 import React from "react";
-import BlogArchive from "../BlogArchive";
+import PostsTableView from "../PostsTableView";
 import UserService from "../services/UserService";
 import Pagination from "../shared/Pagination";
 
@@ -53,7 +53,9 @@ export default class MyPosts extends React.Component {
 		return (
 			<div>
 				<div>
-					<BlogArchive postItems={this.state.blogItems}></BlogArchive>
+					<PostsTableView
+						postItems={this.state.blogItems}
+					></PostsTableView>
 				</div>
 				<Pagination
 					totalRecords={this.state.totalRecords}

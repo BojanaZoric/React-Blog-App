@@ -1,15 +1,38 @@
 import React from "react";
 import "./Analitics.css";
 import { Bar, Chart } from "react-chartjs-2";
+import AnalyticService from "../services/AnalyticService";
 
 export default class Analitics extends React.Component {
 	constructor() {
 		super();
+		this.labels = [
+			"January",
+			"February",
+			"March",
+			"April",
+			"May",
+			"June",
+			"July",
+			"August",
+			"September",
+			"October",
+			"November",
+			"December",
+		];
+		const currYear = new Date().getFullYear();
+		this.state = {
+			postAnalytic: [],
+			userAnalytic: [],
+			postsYear: currYear,
+			userYear: currYear,
+		};
 	}
 
 	componentDidMount() {
+		this.getUsersAnalitycData();
+		this.getPostsAnalitycData();
 		const draggables = document.querySelectorAll(".draggable");
-		console.log(draggables);
 		const containers = document.querySelectorAll(".analitic-wrapper");
 
 		draggables.forEach((draggable) => {
@@ -56,47 +79,102 @@ export default class Analitics extends React.Component {
 	}
 
 	getUsersAnalitycData() {
-		const labels = ["1", "2", "3"];
+		AnalyticService.getUsersByYear(this.state.userYear).then((res) => {
+			const data = res.data;
+			const dataList = [];
+			for (let i = 1; i <= 12; i++) {
+				dataList[i - 1] = 0;
+				for (let el of data) {
+					if (el[0] === i) {
+						dataList[i - 1] = el[1];
+					}
+				}
+			}
+			this.setState({ userAnalytic: dataList });
+		});
+	}
+
+	getPostsAnalitycData() {
+		AnalyticService.getPostsByYear(this.state.userYear).then((res) => {
+			const data = res.data;
+			const dataList = [];
+			for (let i = 1; i <= 12; i++) {
+				dataList[i - 1] = 0;
+				for (let el of data) {
+					if (el[0] === i) {
+						dataList[i - 1] = el[1];
+					}
+				}
+			}
+			this.setState({ postAnalytic: dataList });
+		});
+	}
+
+	getUserStatistic() {
 		return {
-			labels: ["1", "2", "3"],
+			labels: this.labels,
 			datasets: [
 				{
+					scaleSteps: 1,
 					label: "New Users",
-					backgroundColor: "red",
-					data: [0, 10, 5],
+					backgroundColor: "blue",
+					data: this.state.userAnalytic,
 				},
 			],
 		};
 	}
 
-	render() {
-		const labels = ["January", "February", "March", "April", "May", "June"];
-		const data = {
-			labels: labels,
+	getPostStatistic() {
+		return {
+			labels: this.labels,
 			datasets: [
 				{
-					label: "My First dataset",
-					backgroundColor: "rgb(255, 99, 132)",
-					borderColor: "rgb(255, 99, 132)",
-					data: [0, 10, 5, 2, 20, 30, 45],
+					scaleSteps: 1,
+					label: "New Posts",
+					backgroundColor: "blue",
+					data: this.state.postAnalytic,
 				},
 			],
 		};
+	}
+
+	getChartOptions() {
+		return {
+			scales: {
+				yAxes: [
+					{
+						ticks: {
+							beginAtZero: true,
+							stepSize: 1,
+						},
+					},
+				],
+			},
+		};
+	}
+
+	render() {
 		return (
 			<div className="analitic-wrapper">
 				<div
 					className="draggable analitic-card card-2"
 					draggable="true"
 				>
-					<Bar data={data} />
-					Post Views
+					<Bar
+						className="statistic-data-container"
+						data={this.getPostStatistic()}
+						options={this.getChartOptions()}
+					/>
 				</div>
 				<div
 					className="draggable analitic-card card-1"
 					draggable="true"
 				>
-					New Users
-					<Bar data={this.getUsersAnalitycData()} />
+					<Bar
+						className="statistic-data-container"
+						data={this.getUserStatistic()}
+						options={this.getChartOptions()}
+					/>
 				</div>
 				<div
 					className="draggable analitic-card card-1"

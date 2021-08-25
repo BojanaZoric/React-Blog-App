@@ -1,14 +1,13 @@
 import React from "react";
-import BlogArchive from "./BlogArchive";
 import Pagination from "./shared/Pagination";
 import PostService from "./services/PostService";
 import { withRouter } from "react-router-dom";
+import BlogItem from "./BlogItem";
 
 class BlogList extends React.Component {
 	constructor(props) {
 		super(props);
 		this.match = this.props.match;
-		console.log(this.match.params.category);
 		this.state = {
 			category: props.match.params.category,
 			tag: props.match.params.tag,
@@ -54,12 +53,25 @@ class BlogList extends React.Component {
 				this.state.itemsPerPage * (this.state.currentPage - 1)
 			).then((res) => {
 				const blogItems = res.data[0];
-				this.setState({ totalRecords: res.data[1] });
-				this.setState({ blogItems });
+				this.setState({
+					totalRecords: res.data[1],
+					blogItems: blogItems,
+				});
 			});
 		} else if (this.state.category) {
 			PostService.getPostsWithCategory(
 				this.state.category,
+				this.state.itemsPerPage,
+				this.state.itemsPerPage * (this.state.currentPage - 1)
+			).then((res) => {
+				this.setState({
+					totalRecords: res.data[2],
+					blogItems: res.data[1],
+				});
+			});
+		} else if (this.state.tag) {
+			PostService.getPostsWithTag(
+				this.state.tag,
 				this.state.itemsPerPage,
 				this.state.itemsPerPage * (this.state.currentPage - 1)
 			).then((res) => {
@@ -83,7 +95,12 @@ class BlogList extends React.Component {
 		return (
 			<div>
 				<div>
-					<BlogArchive postItems={this.state.blogItems}></BlogArchive>
+					<div>
+						<div className="divider"></div>
+						{this.state.blogItems.map((item) => (
+							<BlogItem key={item.id} blogItem={item}></BlogItem>
+						))}
+					</div>
 				</div>
 				<Pagination
 					totalRecords={this.state.totalRecords}

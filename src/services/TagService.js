@@ -22,7 +22,7 @@ const deleteOne = (id) => {
 
 const addTagToPost = (postId, tagId) => {
 	var postTag = {
-		postId: postId,
+		postId: parseInt(postId),
 		tagId: tagId,
 	};
 

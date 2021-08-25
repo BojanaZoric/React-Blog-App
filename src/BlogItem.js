@@ -3,6 +3,8 @@ import "./BlogItem.css";
 import AuthorService from "./services/AuthorService";
 import Storage from "./util/storage";
 import image from "./util/post.jpg";
+import { ToastContainer } from "react-toastr";
+import { Link } from "react-router-dom";
 
 export default class BlogItem extends React.Component {
 	constructor(props) {
@@ -11,17 +13,34 @@ export default class BlogItem extends React.Component {
 			blogItem: props.blogItem,
 		};
 		this.onSavedClick = this.onSavedClick.bind(this);
+		this.container = undefined;
 	}
 
 	onSavedClick() {
-		AuthorService.savePost(this.state.blogItem.id).then((res) => {
-			console.log(res);
-		});
+		AuthorService.savePost(this.state.blogItem.id).then(
+			(res) => {
+				console.log("da");
+				this.container.success("d");
+			},
+			(error) => {
+				console.log("ne");
+				this.container.error("error", "ttt", {
+					timeOut: 300,
+					closeButton: true,
+					preventDuplicates: true,
+				});
+			}
+		);
 	}
 
 	render() {
+		let container;
 		return (
-			<div>
+			<div className="toastr-container">
+				<ToastContainer
+					ref={(ref) => (this.container = ref)}
+					className="toast-top-right"
+				/>
 				<div className="blog-item-container">
 					<div className="post-img-section">
 						<img className="post-image" src={image} />
@@ -31,15 +50,22 @@ export default class BlogItem extends React.Component {
 							{this.state.blogItem.title}
 						</h3>
 						<div className="meta">22/7/2020</div>
-						<div className="post-description">Description</div>
+						<div className="post-description">
+							{this.state.blogItem.content.substring(0, 250)}...
+						</div>
 						<div className="read-more">
-							<button className="btn primary-btn">
-								Read More
-							</button>
-							{Storage.isLoggedIn() ? (
-								<button onClick={this.onSavedClick}>
-									Save
+							<Link to={`/post/${this.state.blogItem.id}`}>
+								<button className="btn primary-btn">
+									Read More
 								</button>
+							</Link>
+							{Storage.isLoggedIn() ? (
+								<button
+									className="save-btn"
+									onClick={() => {
+										this.onSavedClick();
+									}}
+								></button>
 							) : null}
 						</div>
 					</div>

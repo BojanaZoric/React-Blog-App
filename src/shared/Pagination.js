@@ -43,6 +43,7 @@ export default class Pagination extends React.Component {
 		let totalPages = Math.ceil(
 			this.state.totalRecords / this.state.itemsPerPage
 		);
+
 		return (
 			<div className="pagination-container">
 				<div className="items-per-page meta">
@@ -58,18 +59,73 @@ export default class Pagination extends React.Component {
 						<option value={this.state.totalRecords}>All</option>
 					</select>
 				</div>
-				<ul>
-					{this.range(totalPages).map((pageNum) => (
-						<li
-							className="pagination-item"
-							onClick={() => {
-								this.changeNumber(pageNum + 1);
-							}}
-							key={pageNum}
-						>
-							{pageNum + 1}
-						</li>
-					))}
+
+				<ul className="pagination-button-list">
+					<li
+						onClick={() => {
+							if (this.state.currentPage !== 1) {
+								this.changeNumber(1);
+								this.setState({ currentPage: 1 });
+							}
+						}}
+						className="pagination-list-item"
+					>
+						<button
+							disabled={this.state.currentPage <= 1}
+							className="btn-pagination btn-first"
+						></button>
+					</li>
+					<li
+						onClick={() => {
+							if (this.state.currentPage > 1) {
+								this.changeNumber(this.state.currentPage - 1);
+								this.setState({
+									currentPage: this.state.currentPage - 1,
+								});
+							}
+						}}
+						className="pagination-list-item"
+					>
+						<button
+							disabled={this.state.currentPage <= 1}
+							className="btn-pagination btn-left"
+						></button>
+					</li>
+					<li
+						onClick={() => {
+							if (this.state.currentPage < totalPages) {
+								this.changeNumber(this.state.currentPage + 1);
+								this.setState({
+									currentPage: this.state.currentPage + 1,
+								});
+							}
+						}}
+						className="pagination-list-item"
+					>
+						<button
+							disabled={this.state.currentPage >= totalPages}
+							className="btn-pagination btn-right"
+						></button>
+					</li>
+					<li
+						onClick={() => {
+							if (this.state.currentPage < totalPages) {
+								this.changeNumber(totalPages);
+								this.setState({
+									currentPage: totalPages,
+								});
+							}
+						}}
+						className="pagination-list-item"
+					>
+						<button
+							disabled={
+								totalPages <= 1 ||
+								this.state.currentPage >= totalPages
+							}
+							className="btn-pagination btn-last"
+						></button>
+					</li>
 				</ul>
 			</div>
 		);

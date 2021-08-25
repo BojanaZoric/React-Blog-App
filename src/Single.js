@@ -1,11 +1,12 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import PostService from "./services/PostService";
 import "./Single.css";
 
-export default class Single extends React.Component {
+class Single extends React.Component {
 	constructor(props) {
 		super(props);
-
+		this.match = this.props.match;
 		this.state = {
 			post: [],
 			commentMessage: "",
@@ -13,8 +14,12 @@ export default class Single extends React.Component {
 	}
 
 	componentDidMount() {
-		//const postId = this.props.match.params.postId;
-		PostService.getOne(1).then((res) => {
+		this.getPost();
+	}
+
+	getPost() {
+		const postId = this.props.match.params.id;
+		PostService.getOne(postId).then((res) => {
 			const post = res.data;
 			this.setState({ post });
 			console.log(post);
@@ -22,7 +27,6 @@ export default class Single extends React.Component {
 	}
 
 	sortComments(comments) {
-		console.log(comments);
 		let newList = {};
 		for (let comment of comments) {
 			newList[comment[0].id] = [];
@@ -50,7 +54,7 @@ export default class Single extends React.Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		const data = {
-			postId: 1,
+			postId: parseInt(this.props.match.params.id),
 			message: this.state.commentMessage,
 			parentComment: null,
 		};
@@ -152,3 +156,5 @@ export default class Single extends React.Component {
 		);
 	}
 }
+
+export default withRouter(Single);

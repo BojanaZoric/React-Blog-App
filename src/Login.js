@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import UserService from "./services/UserService";
+import Storage from "./util/storage";
 
 export default class Login extends React.Component {
 	constructor(props) {
@@ -25,10 +26,13 @@ export default class Login extends React.Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		UserService.login(this.state).then((res) => {
-			const token = res && res.data.user["token"];
-			if (token) {
-				localStorage.setItem("token", token);
-				this.setState({ redirect: true, role: res.data.user.role });
+			console.log(res);
+			const user = res.data.user;
+			if (user) {
+				console.log("user");
+				if (Storage.logIn(user)) {
+					this.setState({ redirect: true, role: Storage.getRole() });
+				}
 			}
 		});
 	};

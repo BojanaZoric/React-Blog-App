@@ -4,7 +4,7 @@
 }
 
 .single-post-category {
-	color: #0000ff;
+	color: var(--link-color);
 }
 
 .single-post-title {
@@ -14,6 +14,13 @@
 }
 
 .single-post-author {
+}
+
+.single-post-content {
+	margin: 2rem 0 5rem 0;
+	letter-spacing: 0.05rem;
+	line-height: 1.2rem;
+	text-align: center;
 }
 
 .single-post-date {
@@ -50,4 +57,33 @@
 
 .indent-comment {
 	margin-left: 2rem;
+}
+
+.sidebar-single-tag {
+	display: inline-block;
+	color: var(--link-color);
+	padding: 0.2rem;
+	border: 1px solid var(--link-color);
+	margin: 0.2rem;
+	text-decoration: none;
+}
+.widget-title {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 0.9rem;
+	margin: 1rem 1rem 0 0;
+}
+
+.widget-title:before,
+.widget-title:after {
+	content: "";
+	border-top: 2px solid;
+	margin: 0 20px 0 0;
+	flex: 1 0 20px;
+	color: #ccc;
+}
+.widget-title:after {
+	margin: 0 0 0 20px;
 }

@@ -26,8 +26,33 @@
 }
 
 .post-description {
-	margin: 0.5rem 0;
+	margin: 0.5rem 0 0 0;
+	padding: 0.2rem 0 0 0;
 	height: 9rem;
+	letter-spacing: 0.04rem;
+	word-spacing: 0.09rem;
+	font-size: 0.95rem;
+	line-height: 1.3rem;
+}
+
+.toastr-container {
+	position: relative;
+}
+
+.toast-top-right {
+	position: absolute;
+	top: 0;
+	right: 1rem;
+}
+
+.toast {
+	color: #ffffff;
+	padding: 0.2rem 0.5rem;
+	margin: 0.2rem 0;
+}
+
+.toast-error {
+	background-color: var(--danger-color);
 }
 
 @media screen and (min-width: 767px) {
@@ -44,6 +69,7 @@
 	}
 
 	.post-info-section {
-		flex-grow: 1;
+		/*flex-grow: 1;*/
+		width: 60%;
 	}
 }

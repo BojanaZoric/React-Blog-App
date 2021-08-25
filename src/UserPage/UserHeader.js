@@ -70,7 +70,9 @@ export default class UserHeader extends React.Component {
 		return (
 			<header className="user-header">
 				<div className="branding">
-					<img className="logo-image" src={logo} />
+					<Link to={`/`} className="logo-link">
+						<img className="logo-image" src={logo} />
+					</Link>
 				</div>
 
 				<nav>

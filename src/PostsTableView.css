@@ -1,0 +1,21 @@
+.post-table {
+	width: 80%;
+	margin: 0 auto;
+}
+.post-table-img {
+	width: 5rem;
+	height: 3rem;
+	object-fit: cover;
+}
+
+.posts-table-container {
+	margin-top: 10rem;
+}
+
+.posts-table-id-row {
+	width: 7%;
+}
+
+.posts-table-img-row {
+	width: 15%;
+}

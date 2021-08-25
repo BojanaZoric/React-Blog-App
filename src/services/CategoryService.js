@@ -19,7 +19,7 @@ const deleteOne = (id) => {
 
 const addCategoryToPost = (postId, categoryId) => {
 	var postCategory = {
-		postId: postId,
+		postId: parseInt(postId),
 		categoryId: categoryId,
 	};
 

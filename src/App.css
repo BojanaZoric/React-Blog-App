@@ -9,6 +9,12 @@
 	--header-height: 4rem;
 	--table-border-color: #f2f2f2;
 	--meta-data-color: #7c7c7c;
+	--link-color: #0077c6;
+	--btn-info-color: #00aed9;
+	--btn-danger-color: #dc3545;
+	--btn-disabled-color: #979797;
+	--btn-edit-color: #3cc465;
+	--btn-warning-color: #ffc107;
 }
 body {
 	box-sizing: border-box;
@@ -65,6 +71,10 @@ img {
 	.container {
 		flex-direction: row-reverse;
 	}
+	.user-page-container {
+		width: 90%;
+		margin: 0 auto;
+	}
 
 	.navbar {
 		width: 20%;
@@ -73,7 +83,7 @@ img {
 	}
 
 	.main {
-		width: 80%;
+		width: 75%;
 		padding: 0 2rem;
 	}
 
@@ -183,6 +193,10 @@ img {
 
 .add-form-label {
 	grid-column: labels;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right: 0.5rem;
 }
 
 .add-form-control {
@@ -204,4 +218,55 @@ img {
 	padding: 0.3rem 0.1rem;
 	font-size: 1rem;
 	width: 100%;
+}
+
+.save-btn {
+	display: inline-block;
+	background-color: transparent;
+	outline: none;
+	border: none;
+	opacity: 0.7;
+	height: 2rem;
+	cursor: pointer;
+	padding: 0 0.5rem;
+}
+.save-btn:before {
+	content: url(./util/icons/save.ico);
+}
+
+.btn-edit {
+	background-color: var(--btn-edit-color);
+}
+
+.btn-edit:before {
+	content: url(./util/icons/edit.ico);
+	color: var(--btn-text-color);
+}
+
+.btn-delete {
+	background-color: var(--btn-danger-color);
+}
+
+.btn-delete:before {
+	content: url(./util/icons/delete.ico);
+	color: var(--btn-text-color);
+}
+
+.btn-rounded {
+	width: 2.5rem;
+	height: 2.5rem;
+	border-radius: 25%;
+	margin: 0 0.2rem;
+	border: none;
+	cursor: pointer;
+}
+
+.btn-long {
+	width: 5rem;
+	height: 2.5rem;
+	border-radius: 0.5rem;
+	margin: 0 0.2rem;
+	border: none;
+	cursor: pointer;
+	color: var(--btn-text-color);
 }

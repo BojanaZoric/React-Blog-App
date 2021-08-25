@@ -8,7 +8,6 @@ import { Redirect, withRouter } from "react-router-dom";
 class CreatePost extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log(this.props.match.params.id);
 		this.state = {
 			title: "",
 			slug: "",
@@ -34,7 +33,8 @@ class CreatePost extends React.Component {
 
 	handleChange = (event) => {
 		const target = event.target;
-		const value = target.value;
+		const value =
+			target.type === "checkbox" ? target.checked : target.value;
 		const name = target.name;
 		this.setState({
 			[name]: value,
@@ -52,7 +52,7 @@ class CreatePost extends React.Component {
 
 	isPresentTag(item) {
 		for (let el of this.state.tags) {
-			if (item.id === el.id) {
+			if (item.id === el[0].id) {
 				return true;
 			}
 		}
@@ -61,7 +61,6 @@ class CreatePost extends React.Component {
 
 	componentDidMount() {
 		this.getPost();
-
 		CategoryService.getAll().then((res) => {
 			this.setState({ allCategories: res.data[0] });
 		});
@@ -79,13 +78,14 @@ class CreatePost extends React.Component {
 				content: res.data[0].content,
 				categories: res.data[3],
 				tags: res.data[4],
+				published: res.data[0].published,
 			});
 		});
 	}
 
 	handleSubmit = (event) => {
 		event.preventDefault();
-		PostService.update(1, this.state).then((res) => {
+		PostService.update(this.state.id, this.state).then((res) => {
 			this.setState({ redirect: true });
 		});
 	};
@@ -94,7 +94,7 @@ class CreatePost extends React.Component {
 		event.preventDefault();
 
 		CategoryService.addCategoryToPost(
-			18,
+			this.state.id,
 			parseInt(this.state.selectedCategory)
 		).then((res) => {
 			this.getPost();
@@ -104,11 +104,12 @@ class CreatePost extends React.Component {
 
 	addTag(event) {
 		event.preventDefault();
-		TagService.addTagToPost(18, parseInt(this.state.selectedTag)).then(
-			(res) => {
-				this.getPost();
-			}
-		);
+		TagService.addTagToPost(
+			this.state.id,
+			parseInt(this.state.selectedTag)
+		).then((res) => {
+			this.getPost();
+		});
 	}
 
 	removeTagFromPost(postTagId) {
@@ -133,8 +134,14 @@ class CreatePost extends React.Component {
 					<div className="post-data">
 						<form onSubmit={this.handleSubmit}>
 							<h1 className="post-data-title">
-								{this.state.title}
-								<input />
+								<input
+									name="title"
+									id="title"
+									type="text"
+									className="input-title"
+									value={this.state.title}
+									onChange={this.handleChange}
+								/>
 							</h1>
 							<h6 className="post-data-title">
 								{this.state.slug}
@@ -170,7 +177,7 @@ class CreatePost extends React.Component {
 												className="post-category-btn"
 												onClick={() =>
 													this.removeCategoryFromPost(
-														item[1].id
+														item.id
 													)
 												}
 											>
@@ -249,6 +256,17 @@ class CreatePost extends React.Component {
 								</select>
 								<button type="submit">Add</button>
 							</form>
+						</div>
+						<div>
+							<input
+								name="published"
+								checked={this.state.published}
+								value={this.state.published}
+								onChange={this.handleChange}
+								type="checkbox"
+								id="published"
+							/>
+							<label htmlFor="published">publish</label>
 						</div>
 					</div>
 				</div>
