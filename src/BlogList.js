@@ -23,11 +23,20 @@ class BlogList extends React.Component {
 
 	componentWillReceiveProps = (nextProps) => {
 		if (
+			nextProps.match.params.category &&
 			this.props.match.params.category !== nextProps.match.params.category
 		) {
-			this.setState({ category: nextProps.match.params.category });
-		} else if (this.props.match.params.tag !== nextProps.match.params.tag) {
-			this.setState({ tag: nextProps.match.params.tag });
+			this.setState({
+				tag: "",
+				category: nextProps.match.params.category,
+			});
+		} else if (
+			nextProps.match.params.tag &&
+			this.props.match.params.tag !== nextProps.match.params.tag
+		) {
+			this.setState({ category: "", tag: nextProps.match.params.tag });
+		} else {
+			this.setState({ category: null, tag: null });
 		}
 	};
 
