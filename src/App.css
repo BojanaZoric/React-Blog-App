@@ -91,10 +91,14 @@ img {
 		width: 20%;
 		padding: 0 0.5rem;
 	}
+
+	.info-row {
+		flex-direction: row !important;
+		column-gap: 0.5rem !important;
+	}
 }
 
 .content-container {
-	background-color: var(--blank-background-color);
 	width: 80%;
 	margin: 2.5rem auto;
 	padding: 0.2rem 0;
@@ -234,6 +238,16 @@ img {
 	content: url(./util/icons/save.ico);
 }
 
+.btn-disable {
+	color: var(--primary-text-color);
+	background-color: var(--danger-color);
+}
+
+.btn-enable {
+	color: var(--primary-text-color);
+	background-color: var(--btn-warning-color);
+}
+
 .btn-edit {
 	background-color: var(--btn-edit-color);
 }
@@ -252,6 +266,14 @@ img {
 	color: var(--btn-text-color);
 }
 
+.btn-info {
+	background-color: var(--btn-info-color);
+}
+
+.btn-info:before {
+	content: url(./util/icons/info.ico);
+	color: var(--btn-text-color);
+}
 .btn-rounded {
 	width: 2.5rem;
 	height: 2.5rem;
@@ -269,4 +291,45 @@ img {
 	border: none;
 	cursor: pointer;
 	color: var(--btn-text-color);
+}
+
+.my-posts-container {
+	width: 80%;
+	margin: 10rem auto 0 auto;
+}
+
+.empty-results-message {
+	width: 100%;
+	margin-top: 5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.nav-logout {
+	margin-top: 5rem;
+}
+
+.category-table {
+	margin-top: 1rem;
+}
+
+.info-container {
+	width: 80%;
+	margin: 5rem auto 0 auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.info-row {
+	display: flex;
+	flex-direction: column;
+	padding: 0.1rem 0;
+}
+
+.info-name {
+	font-size: 0.8rem;
+	font-weight: 700;
+	color: var(--meta-data-color);
 }

@@ -51,20 +51,29 @@ export default class MyPosts extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<div>
-					<PostsTableView
-						postItems={this.state.blogItems}
-					></PostsTableView>
-				</div>
-				<Pagination
-					totalRecords={this.state.totalRecords}
-					itemsPerPage={this.state.itemsPerPage}
-					currentPage={this.state.currentPage}
-					onChangeItemsPerPage={this.changeItemsPerPage}
-					onChangePage={this.changePage}
-					defaultValue={this.state.itemsPerPage}
-				></Pagination>
+			<div className="my-posts-container">
+				{this.state.blogItems.length > 0 ? (
+					<>
+						<h3>My Posts</h3>
+						<div>
+							<PostsTableView
+								postItems={this.state.blogItems}
+							></PostsTableView>
+						</div>
+						<Pagination
+							totalRecords={this.state.totalRecords}
+							itemsPerPage={this.state.itemsPerPage}
+							currentPage={this.state.currentPage}
+							onChangeItemsPerPage={this.changeItemsPerPage}
+							onChangePage={this.changePage}
+							defaultValue={this.state.itemsPerPage}
+						></Pagination>
+					</>
+				) : (
+					<h2 className="empty-results-message">
+						There is no posts to show
+					</h2>
+				)}
 			</div>
 		);
 	}

@@ -8,6 +8,7 @@ import AuthorList from "./AuthorList";
 import { Route, Switch, useRouteMatch } from "react-router";
 import AddCategory from "./AddCategory";
 import Analitics from "./Analitics";
+import UserInfo from "./UserInfo";
 export default function Main() {
 	let match = useRouteMatch();
 	return (
@@ -33,6 +34,9 @@ export default function Main() {
 					path={`${match.path}/addCategory`}
 					component={AddCategory}
 				/>
+				<Route path={`${match.path}/user-info/:id`}>
+					<UserInfo />
+				</Route>
 			</Switch>
 		</div>
 	);

@@ -22,7 +22,6 @@ class Single extends React.Component {
 		PostService.getOne(postId).then((res) => {
 			const post = res.data;
 			this.setState({ post });
-			console.log(post);
 		});
 	}
 
@@ -59,7 +58,8 @@ class Single extends React.Component {
 			parentComment: null,
 		};
 		PostService.sendComment(data).then((res) => {
-			console.log(res);
+			this.getPost();
+			this.setState({ commentMessage: "" });
 		});
 	};
 

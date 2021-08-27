@@ -2,6 +2,7 @@ import React from "react";
 import { Router } from "react-router";
 import { NavLink } from "react-router-dom";
 import history from "../util/history";
+import Storage from "../util/storage";
 
 export default class AuthorNavBar extends React.Component {
 	constructor() {
@@ -12,6 +13,10 @@ export default class AuthorNavBar extends React.Component {
 		this.setState({ sidebarOpen: false });
 		document.getElementById("hamburger").checked = false;
 	};
+
+	logout() {
+		Storage.logOut();
+	}
 
 	render() {
 		return (
@@ -77,6 +82,17 @@ export default class AuthorNavBar extends React.Component {
 									onClick={this.closeMenu}
 								>
 									Saved Posts
+								</NavLink>
+							</li>
+							<li className="nav-element">
+								<NavLink
+									className="nav-link nav-logout"
+									activeClassName="is-active"
+									to="/login"
+									exact
+									onClick={this.logout}
+								>
+									Logout
 								</NavLink>
 							</li>
 						</ul>

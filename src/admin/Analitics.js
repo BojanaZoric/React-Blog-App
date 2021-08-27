@@ -1,6 +1,6 @@
 import React from "react";
 import "./Analitics.css";
-import { Bar, Chart } from "react-chartjs-2";
+import { Bar, Chart, Pie } from "react-chartjs-2";
 import AnalyticService from "../services/AnalyticService";
 
 export default class Analitics extends React.Component {
@@ -26,12 +26,17 @@ export default class Analitics extends React.Component {
 			userAnalytic: [],
 			postsYear: currYear,
 			userYear: currYear,
+			publishedChart: [],
+			userChart: [],
 		};
 	}
 
 	componentDidMount() {
+		this.getPostChartStatistic();
 		this.getUsersAnalitycData();
 		this.getPostsAnalitycData();
+		this.getUserChartStatistic();
+
 		const draggables = document.querySelectorAll(".draggable");
 		const containers = document.querySelectorAll(".analitic-wrapper");
 
@@ -78,6 +83,18 @@ export default class Analitics extends React.Component {
 		}
 	}
 
+	getPostChartStatistic() {
+		AnalyticService.getPostsStatistic().then((res) => {
+			this.setState({ publishedChart: res.data });
+		});
+	}
+
+	getUserChartStatistic() {
+		AnalyticService.getUserStatistic().then((res) => {
+			this.setState({ userChart: res.data });
+		});
+	}
+
 	getUsersAnalitycData() {
 		AnalyticService.getUsersByYear(this.state.userYear).then((res) => {
 			const data = res.data;
@@ -117,21 +134,48 @@ export default class Analitics extends React.Component {
 				{
 					scaleSteps: 1,
 					label: "New Users",
-					backgroundColor: "blue",
+					backgroundColor: "#4f81ff",
 					data: this.state.userAnalytic,
 				},
 			],
 		};
 	}
 
+	getPostPieStatistic() {
+		return {
+			datasets: [
+				{
+					data: this.state.publishedChart,
+					backgroundColor: ["#ff6f4f", "#7595e6"],
+				},
+			],
+
+			labels: ["Published Posts", "Unpublished Posts"],
+		};
+	}
+
+	getUserPieStatistic() {
+		return {
+			datasets: [
+				{
+					data: this.state.userChart,
+					backgroundColor: ["#7595e6", "#ff9b4f"],
+				},
+			],
+
+			labels: ["Active Users", "Inactive Users"],
+		};
+	}
+
 	getPostStatistic() {
 		return {
 			labels: this.labels,
+			title: "All Posts",
 			datasets: [
 				{
 					scaleSteps: 1,
 					label: "New Posts",
-					backgroundColor: "blue",
+					backgroundColor: "#ff9b4f",
 					data: this.state.postAnalytic,
 				},
 			],
@@ -170,6 +214,15 @@ export default class Analitics extends React.Component {
 					className="draggable analitic-card card-1"
 					draggable="true"
 				>
+					<Pie
+						className="statistic-data-container"
+						data={this.getPostPieStatistic()}
+					/>
+				</div>
+				<div
+					className="draggable analitic-card card-2"
+					draggable="true"
+				>
 					<Bar
 						className="statistic-data-container"
 						data={this.getUserStatistic()}
@@ -179,7 +232,12 @@ export default class Analitics extends React.Component {
 				<div
 					className="draggable analitic-card card-1"
 					draggable="true"
-				></div>
+				>
+					<Pie
+						className="statistic-data-container"
+						data={this.getUserPieStatistic()}
+					/>
+				</div>
 			</div>
 		);
 	}

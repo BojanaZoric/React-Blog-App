@@ -64,8 +64,8 @@ export default class CategoryList extends React.Component {
 						Add Category
 					</button>
 				</Link>
-				<div className="table-container">
-					<table className="main-table">
+				<div className="">
+					<table className="main-table category-table">
 						<thead>
 							<tr
 								className="main-table-row"

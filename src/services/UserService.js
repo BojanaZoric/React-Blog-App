@@ -21,11 +21,16 @@ const myPosts = (limit, offset) => {
 	});
 };
 
+const getUserInfo = (id) => {
+	return axios.get(`http://localhost:3000/user-info/${id}`);
+};
+
 const UserService = {
 	login,
 	register,
 	profile,
 	myPosts,
+	getUserInfo,
 };
 
 export default UserService;

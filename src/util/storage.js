@@ -16,6 +16,11 @@ const isLoggedIn = () => {
 	return false;
 };
 
+const logOut = () => {
+	localStorage.removeItem("token");
+	localStorage.removeItem("user");
+};
+
 const getRole = () => {
 	const user = JSON.parse(localStorage.getItem("user"));
 	return user["role"];
@@ -31,6 +36,7 @@ const Storage = {
 	isLoggedIn,
 	getRole,
 	getUsername,
+	logOut,
 };
 
 export default Storage;

@@ -1,5 +1,5 @@
 .post-table {
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 }
 .post-table-img {
@@ -9,7 +9,7 @@
 }
 
 .posts-table-container {
-	margin-top: 10rem;
+	/*margin-top: 10rem;*/
 }
 
 .posts-table-id-row {

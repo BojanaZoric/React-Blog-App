@@ -13,7 +13,6 @@ export default class BlogItem extends React.Component {
 			blogItem: props.blogItem,
 		};
 		this.onSavedClick = this.onSavedClick.bind(this);
-		this.container = undefined;
 	}
 
 	onSavedClick() {

@@ -1,6 +1,7 @@
 import React from "react";
 import Pagination from "../shared/Pagination";
 import AuthorService from "../services/AuthorService";
+import { Link } from "react-router-dom";
 
 export default class AuthorList extends React.Component {
 	constructor() {
@@ -58,6 +59,7 @@ export default class AuthorList extends React.Component {
 							<th className="main-table-header">#</th>
 							<th className="main-table-header">First Name</th>
 							<th className="main-table-header">Last Name</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -71,6 +73,11 @@ export default class AuthorList extends React.Component {
 								</td>
 								<td className="main-table-data">
 									{author.lastName}
+								</td>
+								<td>
+									<Link to={`user-info/${author.userId}`}>
+										<button className="btn-rounded btn-info"></button>
+									</Link>
 								</td>
 							</tr>
 						))}
@@ -89,6 +96,7 @@ export default class AuthorList extends React.Component {
 								</td>
 								<td className="main-table-data"> </td>
 								<td className="main-table-data"></td>
+								<td></td>
 							</tr>
 						))}
 					</tbody>

@@ -50,20 +50,28 @@ export default class SavedPosts extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<div>
-					<PostsTableView
-						postItems={this.state.blogItems}
-					></PostsTableView>
-				</div>
-				<Pagination
-					totalRecords={this.state.totalRecords}
-					itemsPerPage={this.state.itemsPerPage}
-					currentPage={this.state.currentPage}
-					onChangeItemsPerPage={this.changeItemsPerPage}
-					onChangePage={this.changePage}
-					defaultValue={this.state.itemsPerPage}
-				></Pagination>
+			<div className="my-posts-container">
+				{this.state.blogItems.length === 0 ? (
+					<h2 className="empty-results-message">
+						There is no saved posts
+					</h2>
+				) : (
+					<>
+						<div>
+							<PostsTableView
+								postItems={this.state.blogItems}
+							></PostsTableView>
+						</div>
+						<Pagination
+							totalRecords={this.state.totalRecords}
+							itemsPerPage={this.state.itemsPerPage}
+							currentPage={this.state.currentPage}
+							onChangeItemsPerPage={this.changeItemsPerPage}
+							onChangePage={this.changePage}
+							defaultValue={this.state.itemsPerPage}
+						></Pagination>
+					</>
+				)}
 			</div>
 		);
 	}
