@@ -29,8 +29,10 @@ const addTagToPost = (postId, tagId) => {
 	return axios.post(`http://localhost:3000/tagPost`, postTag);
 };
 
-const removeTagFromPost = (postTagId) => {
-	return axios.delete(`http://localhost:3000/postTagRemove/${postTagId}`);
+const removeTagFromPost = (tagId, postId) => {
+	return axios.delete(
+		`http://localhost:3000/postTagRemove/${tagId}/${postId}`
+	);
 };
 
 const TagService = {

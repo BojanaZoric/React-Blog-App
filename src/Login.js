@@ -26,10 +26,8 @@ export default class Login extends React.Component {
 	handleSubmit = (event) => {
 		event.preventDefault();
 		UserService.login(this.state).then((res) => {
-			console.log(res);
 			const user = res.data.user;
 			if (user) {
-				console.log("user");
 				if (Storage.logIn(user)) {
 					this.setState({ redirect: true, role: Storage.getRole() });
 				}

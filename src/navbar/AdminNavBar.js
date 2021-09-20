@@ -92,7 +92,7 @@ export default class AdminNavBar extends React.Component {
 								>
 									<button
 										onClick={this.logout}
-										className="btn primary-btn"
+										className="btn primary-btn nav-logout"
 									>
 										Logout
 									</button>

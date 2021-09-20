@@ -26,9 +26,9 @@ const addCategoryToPost = (postId, categoryId) => {
 	return axios.post(`http://localhost:3000/postCategory`, postCategory);
 };
 
-const removeCategoryFromPost = (postCategoryId) => {
+const removeCategoryFromPost = (categoryId, postId) => {
 	return axios.delete(
-		`http://localhost:3000/categoryPostRemove/${postCategoryId}`
+		`http://localhost:3000/categoryPostRemove/${categoryId}/${postId}`
 	);
 };
 

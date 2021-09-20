@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import PostService from "./services/PostService";
 import "./Single.css";
+import Storage from "./util/storage";
 
 class Single extends React.Component {
 	constructor(props) {
@@ -101,55 +102,74 @@ class Single extends React.Component {
 						})}
 						<div className="divider"></div>
 						<div className="comments-section">
-							<h4>Comments:</h4>
-							<ul className="comments-list">
-								{this.sortComments(this.state.post[2]).map(
-									(comment) =>
-										comment.map((item) => (
-											<li
-												key={item[0].id}
-												className={`comment-item ${
-													item[0].parentComment !==
-													null
-														? "indent-comment"
-														: ""
-												}`}
-											>
-												<div className="single-comment-container">
-													<div className="single-comment-header">
-														<div className="meta">
-															{item[1].firstName}{" "}
-															{item[1].lastName}
+							{this.state.post[2].length === 0 ? (
+								<h4>There is no comments for this post</h4>
+							) : (
+								<>
+									<h4>Comments:</h4>
+									<ul className="comments-list">
+										{this.sortComments(
+											this.state.post[2]
+										).map((comment) =>
+											comment.map((item) => (
+												<li
+													key={item[0].id}
+													className={`comment-item ${
+														item[0]
+															.parentComment !==
+														null
+															? "indent-comment"
+															: ""
+													}`}
+												>
+													<div className="single-comment-container">
+														<div className="single-comment-header">
+															<div className="meta">
+																{
+																	item[1]
+																		.firstName
+																}{" "}
+																{
+																	item[1]
+																		.lastName
+																}
+															</div>
+															<div className="meta">
+																{this.formatDate(
+																	item[0]
+																		.created_at
+																)}
+															</div>
 														</div>
-														<div className="meta">
-															{this.formatDate(
-																item[0]
-																	.created_at
-															)}
+														<div className="single-comment-message">
+															{item[0].message}
 														</div>
 													</div>
-													<div className="single-comment-message">
-														{item[0].message}
-													</div>
-												</div>
-											</li>
-										))
-								)}
-							</ul>
+												</li>
+											))
+										)}
+									</ul>
+								</>
+							)}
 						</div>
 						<div className="divider"></div>
-						<div className="comment-form">
-							<h4>Leave your comment:</h4>
-							<form onSubmit={this.handleSubmit}>
-								<textarea
-									className="comment-form-message"
-									value={this.state.commentMessage}
-									onChange={this.handleChange}
-									required
-								></textarea>
-								<button type="submit">Send</button>
-							</form>
-						</div>
+						{Storage.isLoggedIn() &&
+						Storage.getRole() === "author" ? (
+							<div className="comment-form">
+								<h4>Leave your comment:</h4>
+								<form onSubmit={this.handleSubmit}>
+									<textarea
+										className="comment-form-message"
+										value={this.state.commentMessage}
+										onChange={this.handleChange}
+										required
+									></textarea>
+									<button type="submit">Send</button>
+								</form>
+							</div>
+						) : (
+							<p>Please Log In to leave a comment</p>
+						)}
 					</>
 				) : null}
 			</div>

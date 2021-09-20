@@ -112,16 +112,18 @@ class CreatePost extends React.Component {
 		});
 	}
 
-	removeTagFromPost(postTagId) {
-		TagService.removeTagFromPost(postTagId).then((res) => {
+	removeTagFromPost(tagId) {
+		TagService.removeTagFromPost(tagId, this.state.id).then((res) => {
 			this.getPost();
 		});
 	}
 
-	removeCategoryFromPost(postCategoryId) {
-		CategoryService.removeCategoryFromPost(postCategoryId).then((res) => {
-			this.getPost();
-		});
+	removeCategoryFromPost(categoryId) {
+		CategoryService.removeCategoryFromPost(categoryId, this.state.id).then(
+			(res) => {
+				this.getPost();
+			}
+		);
 	}
 
 	render() {
@@ -224,7 +226,7 @@ class CreatePost extends React.Component {
 												className="post-category-btn"
 												onClick={() =>
 													this.removeTagFromPost(
-														item[1].id
+														item[0].id
 													)
 												}
 											>

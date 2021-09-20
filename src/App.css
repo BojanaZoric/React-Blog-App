@@ -110,8 +110,8 @@ img {
 
 .table-container {
 	margin-top: 2rem;
-	width: 40%;
-	min-width: 10rem;
+	width: 80%;
+	/*min-width: 20rem;*/
 	margin: 2rem auto;
 }
 .main-table,
@@ -119,6 +119,7 @@ img {
 .main-table-data {
 	border-bottom: 0.05rem solid var(--table-border-color);
 	border-radius: 0.2rem;
+	overflow-x: scroll;
 }
 
 .main-table {
@@ -148,6 +149,7 @@ img {
 .main-table-header {
 	padding: 0.7rem 0.4rem;
 	font-size: 0.9rem;
+	min-width: 5rem;
 }
 
 .main-table-id {
