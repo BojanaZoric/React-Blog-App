@@ -1,7 +1,6 @@
 import React from "react";
 import "./PostsTableView.css";
-import image from "./util/post.jpg";
-import PostService from "./services/PostService";
+import image from "../util/post.jpg";
 import { Link } from "react-router-dom";
 
 export default class PostsTableView extends React.Component {
@@ -9,19 +8,10 @@ export default class PostsTableView extends React.Component {
 		super(props);
 		this.state = {
 			blogItems: [],
+			mode: props.mode,
 		};
-	}
-
-	onClickDisable(id) {
-		PostService.disablePost(id).then((res) => {
-			console.log("disabled");
-		});
-	}
-
-	onClickEnable(id) {
-		PostService.enablePost(id).then((res) => {
-			console.log("enabled");
-		});
+		this.onClickEnable = props.onEnabled;
+		this.onClickDisable = props.onDisabled;
 	}
 
 	render() {
@@ -34,6 +24,10 @@ export default class PostsTableView extends React.Component {
 							<th className="main-table-header">Id</th>
 							<th className="main-table-header">Image</th>
 							<th className="main-table-header">Title</th>
+							{this.state.mode === "edit" ? (
+								<th className="main-table-header">Status</th>
+							) : null}
+
 							<th></th>
 						</tr>
 					</thead>
@@ -52,30 +46,30 @@ export default class PostsTableView extends React.Component {
 								<td className="main-table-data">
 									{post.title}
 								</td>
-								<td className="main-table-data">
-									{post.published ? (
-										<button
-											onClick={() => {
-												this.onClickDisable(post.id);
-											}}
-										>
-											Disable
-										</button>
-									) : (
-										<button
-											onClick={() => {
-												this.onClickEnable(post.id);
-											}}
-										>
-											Enable
-										</button>
-									)}
-								</td>
-								<td>
-									<Link to={`create-post/${post.id}`}>
-										<button className="btn-rounded btn-edit"></button>
-									</Link>
-								</td>
+								{this.state.mode === "edit" ? (
+									<>
+										<td className="main-table-data">
+											{post.published ? (
+												<>Published</>
+											) : (
+												<>Draft</>
+											)}
+										</td>
+									</>
+								) : null}
+
+								{this.state.mode === "edit" ? (
+									<td>
+										<Link to={`create-post/${post.id}`}>
+											<button className="btn-rounded btn-edit"></button>
+										</Link>
+									</td>
+								) : (
+									<td>
+										<button className="btn-rounded btn-info"></button>
+									</td>
+								)}
+
 								<td>
 									<button className="btn-rounded btn-delete"></button>
 								</td>

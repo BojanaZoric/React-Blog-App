@@ -1,6 +1,6 @@
 import React from "react";
 import "./Analitics.css";
-import { Bar, Chart, Pie } from "react-chartjs-2";
+import { Bar, Pie } from "react-chartjs-2";
 import AnalyticService from "../services/AnalyticService";
 
 export default class Analitics extends React.Component {

@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, Switch, useRouteMatch } from "react-router";
 import { NavLink } from "react-router-dom";
-import BlogList from "../BlogList";
-import Sidebar from "../Sidebar";
-import Single from "../Single";
-import UserHeader from "../UserPage/UserHeader";
+import BlogList from "../user-page/BlogList";
+import Sidebar from "../user-page/Sidebar";
+import Single from "./Single";
+import UserHeader from "../user-page/UserHeader";
 import Storage from "../util/storage";
 import "./UserPage.css";
 
@@ -41,9 +41,6 @@ export default function UserPage() {
 			) : null}
 			<UserHeader />
 			<div className="container user-page-container">
-				<aside className="aside">
-					<Sidebar />
-				</aside>
 				<main role="main" className="main">
 					<Switch>
 						<Route path={`${match.path}blog`} exact>
@@ -63,6 +60,9 @@ export default function UserPage() {
 						</Route>
 					</Switch>
 				</main>
+				<aside className="aside">
+					<Sidebar />
+				</aside>
 			</div>
 		</>
 	);

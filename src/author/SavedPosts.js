@@ -1,5 +1,5 @@
 import React from "react";
-import PostsTableView from "../PostsTableView";
+import PostsTableView from "./PostsTableView";
 import AuthorService from "../services/AuthorService";
 import Pagination from "../shared/Pagination";
 
@@ -60,6 +60,7 @@ export default class SavedPosts extends React.Component {
 						<div>
 							<PostsTableView
 								postItems={this.state.blogItems}
+								mode="view"
 							></PostsTableView>
 						</div>
 						<Pagination

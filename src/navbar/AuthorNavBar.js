@@ -38,7 +38,7 @@ export default class AuthorNavBar extends React.Component {
 									exact
 									onClick={this.closeMenu}
 								>
-									Home
+									Add Post
 								</NavLink>
 							</li>
 							<li className="nav-element">
@@ -49,17 +49,6 @@ export default class AuthorNavBar extends React.Component {
 									exact
 								>
 									Posts
-								</NavLink>
-							</li>
-							<li className="nav-element">
-								<NavLink
-									className="nav-link"
-									activeClassName="is-active"
-									to="/author/add-post"
-									exact
-									onClick={this.closeMenu}
-								>
-									Add Post
 								</NavLink>
 							</li>
 							<li className="nav-element">
@@ -87,12 +76,15 @@ export default class AuthorNavBar extends React.Component {
 							<li className="nav-element">
 								<NavLink
 									className="nav-link nav-logout"
-									activeClassName="is-active"
 									to="/login"
 									exact
-									onClick={this.logout}
 								>
-									Logout
+									<button
+										onClick={this.logout}
+										className="btn primary-btn nav-logout"
+									>
+										Logout
+									</button>
 								</NavLink>
 							</li>
 						</ul>

@@ -79,6 +79,26 @@
 	letter-spacing: 0.02rem;
 }
 
+.post-add-btn {
+	color: #ffffff;
+	background-color: var(--primary-color);
+	border: none;
+	padding: 0.2rem 0.3rem;
+	margin: 0.2rem;
+}
+
+.add-tag-form {
+	margin-top: 5rem;
+}
+
+.add-tag-select {
+	width: 4rem;
+}
+
+.add-tag-title {
+	margin: 0.2rem;
+}
+
 @media only screen and (min-width: 768px) {
 	.post-wrapper {
 		flex-direction: row;

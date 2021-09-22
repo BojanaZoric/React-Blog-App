@@ -1,7 +1,8 @@
 import React from "react";
-import PostsTableView from "../PostsTableView";
+import PostsTableView from "./PostsTableView";
 import UserService from "../services/UserService";
 import Pagination from "../shared/Pagination";
+import PostService from "../services/PostService";
 
 export default class MyPosts extends React.Component {
 	constructor(props) {
@@ -49,6 +50,18 @@ export default class MyPosts extends React.Component {
 		});
 	}
 
+	onClickDisable(id) {
+		PostService.disablePost(id).then((res) => {
+			this.getPosts();
+		});
+	}
+
+	onClickEnable(id) {
+		PostService.enablePost(id).then((res) => {
+			this.getPosts();
+		});
+	}
+
 	render() {
 		return (
 			<div className="my-posts-container">
@@ -58,6 +71,9 @@ export default class MyPosts extends React.Component {
 						<div>
 							<PostsTableView
 								postItems={this.state.blogItems}
+								onEnabled={this.onClickEnable}
+								onDisabled={this.onClickDisable}
+								mode="edit"
 							></PostsTableView>
 						</div>
 						<Pagination

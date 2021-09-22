@@ -55,6 +55,10 @@
 	background-color: var(--danger-color);
 }
 
+.read-more {
+	position: relative;
+}
+
 @media screen and (min-width: 767px) {
 	.blog-item-container {
 		flex-direction: row;

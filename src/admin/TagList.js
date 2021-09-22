@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Pagination from "../shared/Pagination";
 import TagService from "../services/TagService";
 
@@ -59,11 +58,6 @@ export default class TagList extends React.Component {
 	render() {
 		return (
 			<div className="content-container">
-				<Link to="/admin/addTag">
-					<button type="button" className="btn primary-btn">
-						Add Tag
-					</button>
-				</Link>
 				<div className="table-container">
 					<table className="main-table">
 						<thead>

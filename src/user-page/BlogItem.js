@@ -1,8 +1,8 @@
 import React from "react";
 import "./BlogItem.css";
-import AuthorService from "./services/AuthorService";
-import Storage from "./util/storage";
-import image from "./util/post.jpg";
+import AuthorService from "../services/AuthorService";
+import Storage from "../util/storage";
+import image from "../util/post.jpg";
 import { ToastContainer } from "react-toastr";
 import { Link } from "react-router-dom";
 
@@ -18,11 +18,9 @@ export default class BlogItem extends React.Component {
 	onSavedClick() {
 		AuthorService.savePost(this.state.blogItem.id).then(
 			(res) => {
-				console.log("da");
 				this.container.success("d");
 			},
 			(error) => {
-				console.log("ne");
 				this.container.error("error", "ttt", {
 					timeOut: 300,
 					closeButton: true,
@@ -33,7 +31,6 @@ export default class BlogItem extends React.Component {
 	}
 
 	render() {
-		let container;
 		return (
 			<div className="toastr-container">
 				<ToastContainer
@@ -42,7 +39,7 @@ export default class BlogItem extends React.Component {
 				/>
 				<div className="blog-item-container">
 					<div className="post-img-section">
-						<img className="post-image" src={image} />
+						<img className="post-image" alt="" src={image} />
 					</div>
 					<div className="post-info-section">
 						<h3 className="post-title">
@@ -58,7 +55,8 @@ export default class BlogItem extends React.Component {
 									Read More
 								</button>
 							</Link>
-							{Storage.isLoggedIn() ? (
+							{Storage.isLoggedIn() &&
+							Storage.getRole() === "author" ? (
 								<button
 									className="save-btn"
 									onClick={() => {

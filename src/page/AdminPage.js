@@ -6,12 +6,12 @@ export default class AdminPage extends React.Component {
 	render() {
 		return (
 			<div className="container admin-container">
-				<main role="main" className="main">
-					<Main></Main>
-				</main>
 				<nav className="navbar">
 					<AdminNavBar></AdminNavBar>
 				</nav>
+				<main role="main" className="main">
+					<Main></Main>
+				</main>
 			</div>
 		);
 	}

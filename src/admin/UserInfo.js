@@ -9,7 +9,10 @@ class UserInfo extends React.Component {
 		this.match = this.props.match;
 		this.state = {
 			userInfo: [],
+			userId: this.props.match.params.id,
 		};
+		this.onClickDisable = this.onClickDisable.bind(this);
+		this.onClickEnable = this.onClickEnable.bind(this);
 	}
 
 	componentDidMount() {
@@ -21,6 +24,18 @@ class UserInfo extends React.Component {
 
 		UserService.getUserInfo(userId).then((res) => {
 			this.setState({ userInfo: res.data });
+		});
+	}
+
+	onClickDisable() {
+		UserService.disableUser(this.state.userId).then((res) => {
+			this.getInfo();
+		});
+	}
+
+	onClickEnable() {
+		UserService.enableUser(this.state.userId).then((res) => {
+			this.getInfo();
 		});
 	}
 
@@ -52,14 +67,20 @@ class UserInfo extends React.Component {
 						<>
 							{this.state.userInfo.enabled ? (
 								<div>
-									<button className="btn btn-disable">
-										Disable
+									<button
+										onClick={this.onClickDisable}
+										className="btn btn-disable"
+									>
+										Disable User
 									</button>
 								</div>
 							) : (
 								<div>
-									<button className="btn btn-enable">
-										Enable
+									<button
+										onClick={this.onClickEnable}
+										className="btn btn-enable"
+									>
+										Enable User
 									</button>
 								</div>
 							)}

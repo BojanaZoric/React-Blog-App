@@ -1,6 +1,6 @@
 import React from "react";
-import Pagination from "./shared/Pagination";
-import PostService from "./services/PostService";
+import Pagination from "../shared/Pagination";
+import PostService from "../services/PostService";
 import { withRouter } from "react-router-dom";
 import BlogItem from "./BlogItem";
 

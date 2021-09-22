@@ -75,10 +75,7 @@ export default class CategoryList extends React.Component {
 								<th className="main-table-header">
 									Category Name
 								</th>
-								<th className="main-table-header">
-									Parent Category Name
-								</th>
-								<th className="main-table-header">Action</th>
+								<th className="main-table-header"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -92,9 +89,6 @@ export default class CategoryList extends React.Component {
 									</td>
 									<td className="main-table-data">
 										{category.name}
-									</td>
-									<td className="main-table-data">
-										{category.parentCategory}
 									</td>
 									<td className="main-table-data">
 										<button

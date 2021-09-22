@@ -71,7 +71,7 @@ export default class UserHeader extends React.Component {
 			<header className="user-header">
 				<div className="branding">
 					<Link to={`/`} className="logo-link">
-						<img className="logo-image" src={logo} />
+						<img className="logo-image" alt="" src={logo} />
 					</Link>
 				</div>
 

@@ -51,7 +51,7 @@ img {
 
 .container {
 	display: flex;
-	flex-direction: column-reverse;
+	flex-direction: column;
 	min-height: 100vh;
 }
 
@@ -69,7 +69,7 @@ img {
 
 @media screen and (min-width: 768px) {
 	.container {
-		flex-direction: row-reverse;
+		flex-direction: row;
 	}
 	.user-page-container {
 		width: 90%;
@@ -109,7 +109,7 @@ img {
 /* Table */
 
 .table-container {
-	margin-top: 2rem;
+	margin-top: 8rem !important;
 	width: 80%;
 	/*min-width: 20rem;*/
 	margin: 2rem auto;
@@ -119,7 +119,7 @@ img {
 .main-table-data {
 	border-bottom: 0.05rem solid var(--table-border-color);
 	border-radius: 0.2rem;
-	overflow-x: scroll;
+	/*overflow-x: scroll;*/
 }
 
 .main-table {
@@ -235,19 +235,24 @@ img {
 	height: 2rem;
 	cursor: pointer;
 	padding: 0 0.5rem;
+	position: absolute;
+	right: 0;
+	bottom: 0;
 }
 .save-btn:before {
 	content: url(./util/icons/save.ico);
 }
 
 .btn-disable {
+	margin-top: 4rem;
 	color: var(--primary-text-color);
 	background-color: var(--danger-color);
 }
 
 .btn-enable {
+	margin-top: 4rem;
 	color: var(--primary-text-color);
-	background-color: var(--btn-warning-color);
+	background-color: var(--btn-edit-color);
 }
 
 .btn-edit {
@@ -322,12 +327,14 @@ img {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background-color: white;
+	padding: 3rem 0;
 }
 
 .info-row {
 	display: flex;
 	flex-direction: column;
-	padding: 0.1rem 0;
+	padding: 0.3rem 0;
 }
 
 .info-name {

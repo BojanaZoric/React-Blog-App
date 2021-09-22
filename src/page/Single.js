@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import PostService from "./services/PostService";
+import PostService from "../services/PostService";
 import "./Single.css";
-import Storage from "./util/storage";
+import Storage from "../util/storage";
 
 class Single extends React.Component {
 	constructor(props) {

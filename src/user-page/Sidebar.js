@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import TagService from "./services/TagService";
+import TagService from "../services/TagService";
 
 export default class Sidebar extends React.Component {
 	constructor(props) {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, Redirect } from "react-router-dom";
-import UserService from "./services/UserService";
-import Storage from "./util/storage";
+import UserService from "../services/UserService";
+import Storage from "../util/storage";
 
 export default class Login extends React.Component {
 	constructor(props) {

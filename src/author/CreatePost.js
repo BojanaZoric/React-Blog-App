@@ -194,6 +194,7 @@ class CreatePost extends React.Component {
 									value={this.state.selectedCategory}
 									onChange={this.handleChange}
 									name="selectedCategory"
+									className="add-tag-select"
 								>
 									<option value=""></option>
 									{this.state.allCategories.map((item) => {
@@ -207,7 +208,9 @@ class CreatePost extends React.Component {
 										);
 									})}
 								</select>
-								<button type="submit">Add</button>
+								<button className="post-add-btn" type="submit">
+									Add
+								</button>
 							</form>
 						</div>
 						<div className="post-labels">
@@ -238,6 +241,7 @@ class CreatePost extends React.Component {
 							</ul>
 							<form onSubmit={this.addTag}>
 								<select
+									className="add-tag-select"
 									value={this.state.selectedTag}
 									onChange={this.handleChange}
 									name="selectedTag"
@@ -256,7 +260,18 @@ class CreatePost extends React.Component {
 										);
 									})}
 								</select>
-								<button type="submit">Add</button>
+								<button className="post-add-btn" type="submit">
+									Add
+								</button>
+							</form>
+							<form className="add-tag-form">
+								<h4 className="add-tag-title">Add New Tag</h4>
+								<input />
+								<input
+									className="post-add-btn"
+									type="submit"
+									value="Add Tag"
+								/>
 							</form>
 						</div>
 						<div>

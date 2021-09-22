@@ -77,7 +77,7 @@ export default class AdminNavBar extends React.Component {
 								<NavLink
 									className="nav-link"
 									activeClassName="is-active"
-									to="/admin/blog"
+									to="/"
 									exact
 									onClick={this.closeMenu}
 								>

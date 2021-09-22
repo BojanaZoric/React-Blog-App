@@ -1,7 +1,7 @@
 import React from "react";
+import { Route, Switch, useRouteMatch } from "react-router";
 import UserPage from "../page/UserPage";
 import AuthorNavBar from "../navbar/AuthorNavBar";
-import { Route, Switch, useRouteMatch } from "react-router";
 import AddPost from "../author/AddPost";
 import CreatePost from "../author/CreatePost";
 import Profile from "../author/Profile";
@@ -12,6 +12,9 @@ export default function AuthorPage() {
 	let match = useRouteMatch();
 	return (
 		<div className="container admin-container">
+			<nav className="navbar">
+				<AuthorNavBar />
+			</nav>
 			<main role="main" className="main">
 				<Switch>
 					<Route path={`${match.path}`} exact>
@@ -37,9 +40,6 @@ export default function AuthorPage() {
 					</Route>
 				</Switch>
 			</main>
-			<nav className="navbar">
-				<AuthorNavBar />
-			</nav>
 		</div>
 	);
 }

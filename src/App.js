@@ -6,7 +6,7 @@ import AuthorPage from "./page/AuthorPage";
 import history from "./util/history";
 import UserPage from "./page/UserPage";
 import AuthorBlogList from "./author/AuthorBlogList";
-import Login from "./Login";
+import Login from "./page/Login";
 import Registration from "./page/Registration";
 
 function App() {
