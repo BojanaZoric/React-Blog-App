@@ -66,6 +66,10 @@ const disablePost = (id) => {
 	return axios.get(`http://localhost:3000/disable-post/${id}`);
 };
 
+const deletePost = (id) => {
+	return axios.delete(`http://localhost:3000/post/${id}`);
+};
+
 const BlogService = {
 	getAll,
 	getPostsWithCategory,
@@ -76,6 +80,7 @@ const BlogService = {
 	sendComment,
 	enablePost,
 	disablePost,
+	deletePost,
 };
 
 export default BlogService;

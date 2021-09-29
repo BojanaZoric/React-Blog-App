@@ -4,6 +4,7 @@ import CategoryService from "../services/CategoryService";
 import PostService from "../services/PostService";
 import TagService from "../services/TagService";
 import { Redirect, withRouter } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 
 class CreatePost extends React.Component {
 	constructor(props) {
@@ -22,9 +23,11 @@ class CreatePost extends React.Component {
 			selectedCategory: "",
 			selectedTag: "",
 			redirect: false,
+			tagForAdding: "",
 		};
 		this.addCategory = this.addCategory.bind(this);
 		this.addTag = this.addTag.bind(this);
+		this.addNewTagToApplication = this.addNewTagToApplication.bind(this);
 	}
 
 	headers = {
@@ -83,6 +86,21 @@ class CreatePost extends React.Component {
 		});
 	}
 
+	getPostChangeTag() {
+		PostService.getOne(this.state.id).then((res) => {
+			this.setState({
+				tags: res.data[4],
+			});
+		});
+	}
+	getPostChangeCategory() {
+		PostService.getOne(this.state.id).then((res) => {
+			this.setState({
+				categories: res.data[3],
+			});
+		});
+	}
+
 	handleSubmit = (event) => {
 		event.preventDefault();
 		PostService.update(this.state.id, this.state).then((res) => {
@@ -97,7 +115,7 @@ class CreatePost extends React.Component {
 			this.state.id,
 			parseInt(this.state.selectedCategory)
 		).then((res) => {
-			this.getPost();
+			this.getPostChangeCategory();
 			this.setState({ selectedCategory: 0 });
 		});
 	}
@@ -108,22 +126,54 @@ class CreatePost extends React.Component {
 			this.state.id,
 			parseInt(this.state.selectedTag)
 		).then((res) => {
-			this.getPost();
+			this.getPostChangeTag();
 		});
+	}
+
+	addNewTagToApplication(event) {
+		event.preventDefault();
+		const data = {
+			name: this.state.tagForAdding,
+		};
+		TagService.create(data).then(
+			(res) => {
+				toast.success(
+					"Tag is created!",
+					{ autoClose: 2000 },
+					{ closeButton: true }
+				);
+				TagService.addTagToPost(this.state.id, res.data.id).then(
+					(res) => {
+						this.getPostChangeTag();
+					}
+				);
+			},
+			(err) => {
+				toast.error(
+					"Error while creating tag",
+					{ autoClose: 2000 },
+					{ closeButton: true }
+				);
+			}
+		);
 	}
 
 	removeTagFromPost(tagId) {
 		TagService.removeTagFromPost(tagId, this.state.id).then((res) => {
-			this.getPost();
+			this.getPostChangeTag();
 		});
 	}
 
 	removeCategoryFromPost(categoryId) {
 		CategoryService.removeCategoryFromPost(categoryId, this.state.id).then(
 			(res) => {
-				this.getPost();
+				this.getPostChangeCategory();
 			}
 		);
+	}
+
+	addTagToAllTags(tag) {
+		this.setState({ allTags: this.state.allTags.push(tag) });
 	}
 
 	render() {
@@ -133,6 +183,7 @@ class CreatePost extends React.Component {
 					<Redirect push to={"/author/myPosts"} />
 				) : null}
 				<div className="post-wrapper">
+					<ToastContainer />
 					<div className="post-data">
 						<form onSubmit={this.handleSubmit}>
 							<h1 className="post-data-title">
@@ -264,9 +315,18 @@ class CreatePost extends React.Component {
 									Add
 								</button>
 							</form>
-							<form className="add-tag-form">
+							<form
+								onSubmit={this.addNewTagToApplication}
+								className="add-tag-form"
+							>
 								<h4 className="add-tag-title">Add New Tag</h4>
-								<input />
+								<input
+									value={this.state.tagForAdding}
+									onChange={this.handleChange}
+									id="tagForAdding"
+									name="tagForAdding"
+									required
+								/>
 								<input
 									className="post-add-btn"
 									type="submit"

@@ -12,17 +12,14 @@ export default class Profile extends React.Component {
 			biography: "",
 		};
 	}
-
 	componentDidMount() {
 		this.getProfile();
 	}
-
 	getProfile() {
 		UserService.profile().then((res) => {
 			this.setState(res.data);
 		});
 	}
-
 	render() {
 		return (
 			<div>

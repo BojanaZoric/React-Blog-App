@@ -41,12 +41,6 @@ export default class AddCategory extends React.Component {
 						value={this.state.name}
 						required
 					/>
-					<label className="add-form-label" htmlFor="parent">
-						Parent Category:
-					</label>
-					<select className="add-form-control add-form-input">
-						<option>None</option>
-					</select>
 					<button
 						className="primary-btn add-form-control"
 						type="submit"

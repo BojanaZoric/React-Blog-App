@@ -71,9 +71,8 @@ export default class MyPosts extends React.Component {
 						<div>
 							<PostsTableView
 								postItems={this.state.blogItems}
-								onEnabled={this.onClickEnable}
-								onDisabled={this.onClickDisable}
 								mode="edit"
+								dataChanged={this.getPosts}
 							></PostsTableView>
 						</div>
 						<Pagination

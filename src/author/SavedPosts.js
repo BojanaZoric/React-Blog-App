@@ -61,6 +61,7 @@ export default class SavedPosts extends React.Component {
 							<PostsTableView
 								postItems={this.state.blogItems}
 								mode="view"
+								dataChanged={this.getSavedPosts}
 							></PostsTableView>
 						</div>
 						<Pagination

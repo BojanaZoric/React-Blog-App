@@ -11,6 +11,7 @@ class Single extends React.Component {
 		this.state = {
 			post: [],
 			commentMessage: "",
+			parentComment: null,
 		};
 	}
 
@@ -29,6 +30,13 @@ class Single extends React.Component {
 	sortComments(comments) {
 		let newList = {};
 		for (let comment of comments) {
+			for (let auth of this.state.post[5]) {
+				if (auth.userId === comment[1]) {
+					comment[0].authorFirstName = auth.firstName;
+					comment[0].authorLastName = auth.lastName;
+					break;
+				}
+			}
 			newList[comment[0].id] = [];
 			if (comment[0].parentComment === null) {
 				newList[comment[0].id].push(comment);
@@ -56,7 +64,7 @@ class Single extends React.Component {
 		const data = {
 			postId: parseInt(this.props.match.params.id),
 			message: this.state.commentMessage,
-			parentComment: null,
+			parentComment: this.state.parentComment,
 		};
 		PostService.sendComment(data).then((res) => {
 			this.getPost();
@@ -126,12 +134,12 @@ class Single extends React.Component {
 														<div className="single-comment-header">
 															<div className="meta">
 																{
-																	item[1]
-																		.firstName
+																	item[0]
+																		.authorFirstName
 																}{" "}
 																{
-																	item[1]
-																		.lastName
+																	item[0]
+																		.authorLastName
 																}
 															</div>
 															<div className="meta">
@@ -143,6 +151,22 @@ class Single extends React.Component {
 														</div>
 														<div className="single-comment-message">
 															{item[0].message}
+														</div>
+														<div className="reply-div">
+															<a
+																className="reply-label"
+																onClick={() => {
+																	this.setState(
+																		{
+																			parentComment:
+																				item[0]
+																					.id,
+																		}
+																	);
+																}}
+															>
+																Reply
+															</a>
 														</div>
 													</div>
 												</li>
@@ -157,6 +181,24 @@ class Single extends React.Component {
 						Storage.getRole() === "author" ? (
 							<div className="comment-form">
 								<h4>Leave your comment:</h4>
+								{this.state.parentComment ? (
+									<div className="small-text">
+										Reply
+										<span>
+											<button
+												onClick={() => {
+													this.setState({
+														parentComment: null,
+													});
+												}}
+												className="post-category-btn"
+											>
+												&#10006;
+											</button>
+										</span>
+									</div>
+								) : null}
+
 								<form onSubmit={this.handleSubmit}>
 									<textarea
 										className="comment-form-message"
@@ -164,7 +206,16 @@ class Single extends React.Component {
 										onChange={this.handleChange}
 										required
 									></textarea>
-									<button type="submit">Send</button>
+									<input
+										type="hidden"
+										value={this.state.parentComment}
+									/>
+									<button
+										className="btn primary-btn"
+										type="submit"
+									>
+										Send
+									</button>
 								</form>
 							</div>
 						) : (

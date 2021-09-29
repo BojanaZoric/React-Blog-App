@@ -3,6 +3,7 @@ import Pagination from "../shared/Pagination";
 import PostService from "../services/PostService";
 import { withRouter } from "react-router-dom";
 import BlogItem from "./BlogItem";
+import { ToastContainer } from "react-toastify";
 
 class BlogList extends React.Component {
 	constructor(props) {
@@ -103,6 +104,7 @@ class BlogList extends React.Component {
 	render() {
 		return (
 			<div>
+				<ToastContainer className="toast-top-right" />
 				<div>
 					<div>
 						<div className="divider"></div>

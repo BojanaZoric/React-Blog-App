@@ -44,6 +44,17 @@
 	margin-top: 0.5rem;
 }
 
+.reply-label {
+	font-size: 0.8rem;
+	color: rgb(0, 0, 128);
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.reply-div {
+	margin-top: 1rem;
+}
+
 .comment-form-message {
 	width: 80%;
 	margin: 0 auto;
@@ -83,4 +94,11 @@
 }
 .widget-title:after {
 	margin: 0 0 0 20px;
+}
+
+.small-text {
+	font-size: 0.7rem;
+	margin: 0.2rem 0 0 1rem;
+	font-weight: 700;
+	color: var(--meta-data-color);
 }

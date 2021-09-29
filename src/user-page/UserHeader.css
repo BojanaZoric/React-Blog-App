@@ -18,7 +18,7 @@
 	position: relative;
 	list-style-type: none;
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	padding: 0.8rem 0;
@@ -28,7 +28,7 @@
 
 .user-nav-item {
 	margin: 0 0.5rem;
-	padding: 0 0.2rem;
+	padding: 0.5rem 0.2rem;
 }
 
 .user-nav-link {
@@ -44,4 +44,15 @@
 
 .logo-link {
 	height: 100%;
+}
+
+@media screen and (min-width: 768px) {
+	.user-nav {
+		flex-direction: row;
+	}
+
+	.user-nav-item {
+		margin: 0 0.5rem;
+		padding: 0 0.2rem;
+	}
 }
